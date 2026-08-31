@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>帕丁熊｜未来培训与工具体系·终极项目企划</title>
+<style>
+:root{
+ --bg:#fffaf6;--card:#ffffff;--ink:#191919;--muted:#6d665f;--orange:#ff5a00;--orange2:#ff8a3d;
+ --line:#f0dfd2;--green:#18864b;--blue:#2878d6;--purple:#7b55c7;--red:#c73a2b;--yellow:#a66b00;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Noto Sans CJK SC",Arial,sans-serif;background:var(--bg);color:var(--ink)}
+body{overflow:hidden}
+.app{height:100vh;display:grid;grid-template-rows:72px 1fr 58px}
+.topbar{display:flex;align-items:center;gap:16px;padding:0 26px;background:rgba(255,255,255,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(10px);z-index:10}
+.brand{font-weight:800;font-size:18px;white-space:nowrap}.brand b{color:var(--orange)}
+.progress-wrap{flex:1;height:8px;border-radius:99px;background:#f4e8df;overflow:hidden}
+.progress{height:100%;width:0;background:linear-gradient(90deg,var(--orange),var(--orange2));transition:.25s}
+.page-count{font-variant-numeric:tabular-nums;color:var(--muted);font-weight:700}
+.top-actions{display:flex;gap:8px}
+button,select{font:inherit}
+.icon-btn{border:1px solid var(--line);background:#fff;border-radius:12px;padding:9px 12px;cursor:pointer}
+.icon-btn:hover{border-color:#f7b48f}
+.stage{position:relative;overflow:hidden}
+.page{position:absolute;inset:0;padding:36px 56px 42px;overflow:auto;opacity:0;transform:translateX(30px);pointer-events:none;transition:opacity .25s,transform .25s}
+.page.active{opacity:1;transform:none;pointer-events:auto}
+.page h1{font-size:34px;margin:0 0 6px;letter-spacing:-.5px}
+.subtitle{color:var(--muted);font-size:16px;margin-bottom:26px}
+.footer{display:flex;align-items:center;justify-content:space-between;padding:0 26px;background:#fff;border-top:1px solid var(--line)}
+.nav-btn{border:0;background:var(--ink);color:#fff;border-radius:12px;padding:10px 18px;cursor:pointer;font-weight:700}
+.nav-btn.primary{background:var(--orange)} .nav-btn:disabled{opacity:.25;cursor:not-allowed}
+.hint{color:var(--muted);font-size:13px}
+.hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:22px}
+.hero-card,.panel,.tool,.lane,.course-group,.g-card,.bucket,.road,.input-card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:0 10px 30px rgba(84,42,16,.045)}
+.hero-card h2{font-size:42px;line-height:1.2;margin:8px 0 14px}.eyebrow{color:var(--orange);font-weight:900;letter-spacing:2px}
+.stack{display:grid;gap:14px}.metric{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px}.metric b{display:block;color:var(--orange);font-size:19px;margin-bottom:7px}.metric span{color:var(--muted)}
+.vision-strip{margin-top:22px;background:linear-gradient(100deg,#fff0e7,#fff);border:1px solid #ffd7bf;border-radius:18px;padding:18px 22px;display:flex;gap:18px;align-items:center}
+.vision-strip span{background:var(--orange);color:white;border-radius:999px;padding:7px 12px;font-weight:800}.vision-strip strong{font-size:22px}.vision-strip em{margin-left:auto;color:var(--muted);font-style:normal}
+.vision-strip.small strong{font-size:18px}
+.callout{margin-top:18px;border-left:5px solid var(--orange);background:#fff;border-radius:14px;padding:16px 18px;color:#4f463f}
+.quad,.reserve-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.lane h3,.panel h3,.tool h3,.course-group h3{margin-top:0}.lane p{font-size:18px}
+.tag{display:inline-block;font-size:12px;font-weight:800;border-radius:999px;padding:6px 9px;margin-top:4px}
+.tag.done{background:#e9f7ef;color:var(--green)}.tag.doing{background:#e9f1ff;color:var(--blue)}.tag.ready{background:#fff0e7;color:var(--orange)}.tag.later{background:#f2edfb;color:var(--purple)}.tag.warn{background:#fff4d6;color:var(--yellow)}
+.section-title{margin-top:24px}.pill-grid,.quality-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.pill-grid span,.quality-grid span{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;font-weight:750}
+.three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.checklist{padding-left:0;list-style:none}.checklist li{padding:9px 0;border-bottom:1px dashed #efe2d8}.checklist li:before{content:"✓";color:var(--orange);font-weight:900;margin-right:8px}
+.course-map{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.course{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px dashed #eee1d8}
+.tool-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.tool p{color:var(--muted);min-height:62px}
+.flow-table{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden}.flow-row{display:grid;grid-template-columns:1.1fr 1.2fr 1.1fr 2fr}.flow-row span{padding:14px;border-right:1px solid #f3e8e0;border-bottom:1px solid #f3e8e0}.flow-row.head{background:#fff0e7;font-weight:850}
+.split{display:grid;grid-template-columns:1.1fr .9fr;gap:24px}.big-quote{font-size:30px;font-weight:900;line-height:1.35;color:var(--orange);background:#fff;border:1px solid var(--line);padding:20px;border-radius:18px;margin-bottom:20px}.big-quote.small{font-size:24px}
+.todo-box{background:#171717;color:white;border-radius:22px;padding:24px}.todo-box h3{margin-top:0;color:#fff}.todo-box label{display:block;padding:11px 2px;border-bottom:1px solid #373737;line-height:1.45;cursor:pointer}.todo-box input{margin-right:10px;accent-color:var(--orange);transform:scale(1.15)}.todo-box label.done-task{text-decoration:line-through;color:#9d9d9d}.todo-box.wide{margin-top:20px}
+.module-strip,.timeline{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}.module-strip span,.timeline span{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-weight:800}.timeline span b{color:var(--orange);margin-right:6px}
+.diagnosis{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:14px;align-items:stretch}.arrow{display:flex;align-items:center;font-size:32px;color:var(--orange)}
+.cycle{display:flex;align-items:center;gap:12px;justify-content:center;margin:26px 0}.cycle div{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;font-weight:850}.cycle b{color:var(--orange);font-size:24px}
+.four-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.four-cards div{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px}.four-cards b{color:var(--orange);font-size:18px}
+.country-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px}.country-strip div{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px}.country-strip b{display:block;color:var(--orange);font-size:20px;margin-bottom:5px}.country-strip span{color:var(--muted)}
+.reserve-grid div{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px}.portal{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.portal div,.kpi-grid div{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px}.portal b,.kpi-grid b{display:block;color:var(--orange);font-size:18px}.portal span,.kpi-grid span{color:var(--muted)}
+.governance{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.roadmap{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.road h3{margin-top:0}.road p{padding:8px 0;border-bottom:1px dashed #eee1d8}.road.now{border-top:6px solid var(--orange)}.road.next{border-top:6px solid var(--blue)}.road.later{border-top:6px solid var(--purple)}
+.backlog{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.bucket h3{color:var(--orange)}
+.kpi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.kpi-grid b{font-size:19px;margin-bottom:6px}
+.final-system{height:320px;position:relative;margin:0 auto 20px;max-width:850px}.core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:180px;height:180px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--orange),#ff9a4f);color:#fff;font-size:28px;font-weight:900;box-shadow:0 16px 40px rgba(255,90,0,.23)}
+.orbit{position:absolute;background:#fff;border:1px solid var(--line);border-radius:999px;padding:12px 18px;font-weight:850;box-shadow:0 8px 24px rgba(65,38,21,.07)}
+.o1{left:8%;top:18%}.o2{right:8%;top:18%}.o3{left:5%;bottom:18%}.o4{right:5%;bottom:18%}.o5{left:38%;top:2%}.o6{left:38%;bottom:0}
+.final-actions{background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 24px}.final-actions h3{margin-top:0}.final-actions li{padding:7px 0}
+.task-summary{font-size:13px;color:var(--muted);white-space:nowrap}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:30;align-items:center;justify-content:center}.modal.open{display:flex}.modal-card{width:min(920px,92vw);max-height:82vh;overflow:auto;background:#fff;border-radius:20px;padding:24px}.modal-card h2{margin-top:0}.task-list{display:grid;gap:8px}.task-item{padding:12px;border:1px solid var(--line);border-radius:12px;display:flex;gap:12px;align-items:flex-start}.task-item.done{opacity:.5;text-decoration:line-through}
+@media(max-width:900px){
+ .page{padding:28px 24px 34px}.hero-grid,.split,.three-col,.course-map,.roadmap{grid-template-columns:1fr}.tool-grid,.portal,.kpi-grid{grid-template-columns:1fr 1fr}.quad,.reserve-grid,.governance,.backlog{grid-template-columns:1fr 1fr}.four-cards,.country-strip{grid-template-columns:1fr 1fr}.flow-row{grid-template-columns:1fr}.flow-row span{border-right:0}.diagnosis{grid-template-columns:1fr}.arrow{justify-content:center;transform:rotate(90deg)}.hero-card h2{font-size:32px}.vision-strip{align-items:flex-start;flex-wrap:wrap}.vision-strip em{margin-left:0}.top-actions select{display:none}
+}
+@media(max-width:600px){
+ .topbar{padding:0 12px;gap:8px}.brand{font-size:15px}.page h1{font-size:28px}.tool-grid,.portal,.kpi-grid,.quad,.reserve-grid,.governance,.backlog,.four-cards,.country-strip,.pill-grid,.quality-grid{grid-template-columns:1fr}.footer{padding:0 12px}.hint{display:none}
+}
+@media print{
+ body{overflow:visible;background:white}.app{display:block;height:auto}.topbar,.footer{display:none}.stage{overflow:visible}.page{position:relative;opacity:1!important;transform:none!important;pointer-events:auto;page-break-after:always;min-height:100vh}.page:not(.active){display:block}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand"><b>帕丁熊</b> · 培训与工具体系企划</div>
+    <div class="progress-wrap"><div class="progress"></div></div>
+    <div class="page-count"></div>
+    <div class="task-summary"></div>
+    <div class="top-actions">
+      <select id="jump" class="icon-btn" aria-label="跳转页面"></select>
+      <button id="allTasks" class="icon-btn">Todo总览</button>
+      <button id="printBtn" class="icon-btn">打印/PDF</button>
+      <button id="resetBtn" class="icon-btn">重置</button>
+    </div>
+  </header>
+  <main class="stage">
+    
+    <section class="page" data-title="01｜终极愿景">
+      <h1>01｜终极愿景</h1>
+      <div class="subtitle">从“单场培训 + 单个小工具”升级成一套可持续迭代的新商成长操作系统</div>
+      
+<div class="hero-grid">
+  <div class="hero-card">
+    <div class="eyebrow">VISION</div>
+    <h2>培训教“为什么”<br>工具解决“怎么做”<br>数据告诉“下一步”</h2>
+    <p>目标不是做很多零散PPT，而是形成一个围绕女童婴童装新商成长的“课程矩阵 + 工具矩阵 + 运营机制”。</p>
+  </div>
+  <div class="stack">
+    <div class="metric"><b>课程体系</b><span>基础必修 → 商品增长 → AI提效 → 经营进阶</span></div>
+    <div class="metric"><b>工具体系</b><span>标题 → 主图 → 流量诊断 → 品质自查 → 视频 → 日历/门户</span></div>
+    <div class="metric"><b>闭环体系</b><span>学会逻辑 → 用工具执行 → 看数据复盘 → 进入下一课</span></div>
+  </div>
+</div>
+<div class="vision-strip">
+  <span>最终形态</span>
+  <strong>「帕丁熊 · 女童婴童装新商经营工具箱」</strong>
+  <em>内部买手培训与商家成长体系</em>
+</div>
+<div class="callout">
+  <b>一句话定义：</b>让商家不是“听完一节课”，而是知道自己处于哪个经营阶段、下一步应该学什么、做什么、用什么工具。
+</div>
+
+    </section>
+    
+    <section class="page" data-title="02｜体系总览">
+      <h1>02｜体系总览</h1>
+      <div class="subtitle">四条课程线 + 六类工具能力 + 一个统一入口</div>
+      
+<div class="quad">
+  <div class="lane"><h3>① 新商基础线</h3><p>开店 / 履约 → 看懂流量 → 主动拿量</p><span class="tag done">已有基础</span></div>
+  <div class="lane"><h3>② 商品增长线</h3><p>标题 → 点击率 → 商详转化 → 品质售后</p><span class="tag doing">持续完善</span></div>
+  <div class="lane"><h3>③ AI提效线</h3><p>AI主图 → 多站点本地化 → AI商详 → AI视频</p><span class="tag ready">可快速扩张</span></div>
+  <div class="lane"><h3>④ 经营进阶线</h3><p>活动 / 上新节奏 / 品牌 / 本地仓 / 多站点经营</p><span class="tag later">阶段性专题</span></div>
+</div>
+<h3 class="section-title">工具能力地图</h3>
+<div class="pill-grid">
+  <span>标题生成&诊断</span><span>AI主图Prompt</span><span>流量诊断</span>
+  <span>品质自查</span><span>AI视频Prompt</span><span>培训日历&知识门户</span>
+</div>
+<div class="callout"><b>关键原则：</b>不为了“工具数量”做工具。每一个工具都必须绑定一门课、一个高频场景和一个明确的下一步动作。</div>
+
+    </section>
+    
+    <section class="page" data-title="03｜当前资产盘点">
+      <h1>03｜当前资产盘点</h1>
+      <div class="subtitle">哪些已经完成，哪些已有雏形，哪些最值得马上二次开发</div>
+      
+<div class="three-col">
+  <div class="panel">
+    <h3>已完成 / 已有成熟基础</h3>
+    <ul class="checklist static">
+      <li>新商培训第三课《流量特训》43页</li>
+      <li>《标题优化与搜索覆盖》课程框架/培训材料</li>
+      <li>点击率提升专项 / 主图视觉优化培训</li>
+      <li>童装洗水唛相关分享材料</li>
+      <li>人模主图AI Prompt生成器</li>
+      <li>无人模主图AI Prompt生成功能</li>
+      <li>培训课表 / 直播日历买手端工具</li>
+      <li>标题生成类网页工具基础</li>
+    </ul>
+  </div>
+  <div class="panel">
+    <h3>最适合立即升级</h3>
+    <ul class="checklist static">
+      <li>第三课 → V2“看懂流量 + 诊断”</li>
+      <li>AI主图工具 → 加入站点/年龄推荐逻辑</li>
+      <li>标题工具 → 增加“已有标题诊断”</li>
+      <li>培训日历 → 增加课程矩阵/资源入口</li>
+      <li>点击率专项 → 补多站点本地化</li>
+    </ul>
+  </div>
+  <div class="panel">
+    <h3>最适合新建</h3>
+    <ul class="checklist static">
+      <li>《站内推广与数据诊断》独立课程</li>
+      <li>“商品流量诊断”小工具</li>
+      <li>《童装品质自检与售后优化》课程</li>
+      <li>“上新前品质自查”小工具</li>
+      <li>《AI商品视频实战》课程 + Prompt工具</li>
+    </ul>
+  </div>
+</div>
+
+    </section>
+    
+    <section class="page" data-title="04｜课程矩阵">
+      <h1>04｜课程矩阵</h1>
+      <div class="subtitle">建议从“新商必修”到“经营进阶”形成清晰学习路径</div>
+      
+<div class="course-map">
+  <div class="course-group">
+    <h3>A｜新商必修</h3>
+    <div class="course"><b>A1 开店与基础操作</b><span class="tag done">已有</span></div>
+    <div class="course"><b>A2 发货 / 质检 / 履约</b><span class="tag done">已有</span></div>
+    <div class="course"><b>A3 看懂流量 V2</b><span class="tag doing">重构</span></div>
+    <div class="course"><b>A4 主动拿量：站内推广与数据诊断</b><span class="tag ready">新建</span></div>
+  </div>
+  <div class="course-group">
+    <h3>B｜商品增长</h3>
+    <div class="course"><b>B1 标题优化与搜索覆盖</b><span class="tag done">已有</span></div>
+    <div class="course"><b>B2 点击率提升专项</b><span class="tag done">已有</span></div>
+    <div class="course"><b>B3 商详与转化承接</b><span class="tag ready">可独立</span></div>
+    <div class="course"><b>B4 童装品质自检与售后优化</b><span class="tag ready">新建</span></div>
+  </div>
+  <div class="course-group">
+    <h3>C｜AI提效</h3>
+    <div class="course"><b>C1 AI主图实战</b><span class="tag doing">可升级</span></div>
+    <div class="course"><b>C2 多站点视觉本地化</b><span class="tag ready">新建</span></div>
+    <div class="course"><b>C3 AI商详优化</b><span class="tag ready">可新建</span></div>
+    <div class="course"><b>C4 AI商品视频实战</b><span class="tag ready">新建</span></div>
+  </div>
+  <div class="course-group">
+    <h3>D｜经营进阶</h3>
+    <div class="course"><b>D1 活动与商品生命周期运营</b><span class="tag later">后续</span></div>
+    <div class="course"><b>D2 多站点经营与本地化</b><span class="tag later">后续</span></div>
+    <div class="course"><b>D3 品牌经营基础</b><span class="tag later">储备</span></div>
+    <div class="course"><b>D4 欧盟本地仓经营入门</b><span class="tag later">专题</span></div>
+  </div>
+</div>
+
+    </section>
+    
+    <section class="page" data-title="05｜工具矩阵">
+      <h1>05｜工具矩阵</h1>
+      <div class="subtitle">工具不是附属品，而是课程落地的“操作层”</div>
+      
+<div class="tool-grid">
+  <div class="tool"><h3>T1 标题生成&诊断</h3><p>新标题生成、已有标题体检、搜索词回填、版本对比。</p><span class="tag doing">升级现有</span></div>
+  <div class="tool"><h3>T2 AI主图Prompt生成器</h3><p>人模 / 无人模、多站点、年龄、场景、类目、禁忌、安全规则。</p><span class="tag doing">升级现有</span></div>
+  <div class="tool"><h3>T3 商品流量诊断器</h3><p>输入曝光 / CTR / CVR / ROAS / 品质 / 库存，输出优先排查路径。</p><span class="tag ready">优先新建</span></div>
+  <div class="tool"><h3>T4 上新前品质自查</h3><p>按品类生成尺寸、面料、缝制、图物一致、洗唛、安全CheckList。</p><span class="tag ready">新建</span></div>
+  <div class="tool"><h3>T5 AI视频Prompt生成器</h3><p>商品信息 → 站点 → 模特 → 场景 → 15/30秒分镜 → 禁止项。</p><span class="tag ready">新建</span></div>
+  <div class="tool"><h3>T6 培训日历&知识门户</h3><p>课程日历、课程地图、工具入口、直播资料、版本更新、买手端管理。</p><span class="tag doing">升级现有</span></div>
+</div>
+
+    </section>
+    
+    <section class="page" data-title="06｜课程 × 工具闭环">
+      <h1>06｜课程 × 工具闭环</h1>
+      <div class="subtitle">每一门重点课都必须有一个“课后继续操作”的入口</div>
+      
+<div class="flow-table">
+  <div class="flow-row head"><span>课程</span><span>课上解决</span><span>课后工具</span><span>工具继续解决</span></div>
+  <div class="flow-row"><span>看懂流量</span><span>知道问题卡在哪</span><span>流量诊断器</span><span>告诉先改曝光/点击/转化/承接哪一层</span></div>
+  <div class="flow-row"><span>标题优化</span><span>理解消费者怎么搜</span><span>标题诊断器</span><span>生成/体检/搜索词回填</span></div>
+  <div class="flow-row"><span>点击率提升</span><span>理解什么图更想点</span><span>AI主图工具</span><span>直接生成站点化Prompt</span></div>
+  <div class="flow-row"><span>品质与售后</span><span>知道品质风险来自哪</span><span>品质自查工具</span><span>上新前逐项排雷</span></div>
+  <div class="flow-row"><span>AI商品视频</span><span>理解15秒视频结构</span><span>视频Prompt工具</span><span>直接生成分镜Prompt</span></div>
+</div>
+<div class="callout"><b>核心闭环：</b>课程结束页不要只放“谢谢观看”，而应该放“下一步：打开对应工具完成一次实操”。</div>
+
+    </section>
+    
+    <section class="page" data-title="07｜Todo：第三课 V2 重构">
+      <h1>07｜Todo：第三课 V2 重构</h1>
+      <div class="subtitle">保留“流量基础课”定位，把深度广告操作拆出去</div>
+      
+<div class="split">
+  <div>
+    <h3>新版定位</h3>
+    <div class="big-quote">商品做好 → 流量从哪来 → 数据怎么看 → 问题卡在哪</div>
+    <h3>建议保留</h3>
+    <ul>
+      <li>投流前商品基础检查</li>
+      <li>标题 / 主图 / 商详 / 品质库存承接</li>
+      <li>搜索 / 推荐 / 活动 / 推广等流量来源</li>
+      <li>曝光 → 点击 → 成交 → 持续销售四层诊断模型</li>
+    </ul>
+    <h3>建议拆出</h3>
+    <ul>
+      <li>ROAS详细策略</li>
+      <li>预算与调参</li>
+      <li>极速起量 / 全域推广具体操作</li>
+      <li>加码 / 优化 / 停投策略</li>
+    </ul>
+  </div>
+  <div class="todo-box">
+    <h3>Todo</h3>
+    <label><input class="todo" data-id="A3-01" type="checkbox">重新定义第三课课程目标与结尾总模型</label>
+    <label><input class="todo" data-id="A3-02" type="checkbox">压缩/移出过深广告章节</label>
+    <label><input class="todo" data-id="A3-03" type="checkbox">补入第二课件的流量漏斗与诊断框架</label>
+    <label><input class="todo" data-id="A3-04" type="checkbox">增加“同类目 / 前后周期 / 商品vs店铺”对比思维</label>
+    <label><input class="todo" data-id="A3-05" type="checkbox">结尾接入“流量诊断器”入口</label>
+  </div>
+</div>
+
+    </section>
+    
+    <section class="page" data-title="08｜Todo：新课《站内推广与数据诊断》">
+      <h1>08｜Todo：新课《站内推广与数据诊断》</h1>
+      <div class="subtitle">从“推广是什么”升级到“怎么选品、怎么投、怎么读数据、怎么做决定”</div>
+      
+<div class="module-strip">
+  <span>01 为什么推广</span><span>02 什么商品先投</span><span>03 推广模式</span>
+  <span>04 ROAS</span><span>05 预算</span><span>06 数据报表</span>
+  <span>07 诊断</span><span>08 放量/优化/停投</span>
+</div>
+<div class="split">
+  <div>
+    <h3>这门课应该解决的最终能力</h3>
+    <p>让商家从“广告=花钱”转成“推广=购买测试速度 + 主动拿量 + 验证商品”。</p>
+    <div class="callout"><b>建议主线：</b>选品 → 起量 → 观察 → 诊断 → 决策，而不是后台按钮教学。</div>
+  </div>
+  <div class="todo-box">
+    <h3>Todo</h3>
+    <label><input class="todo" data-id="A4-01" type="checkbox">建立15-20页课程大纲</label>
+    <label><input class="todo" data-id="A4-02" type="checkbox">把原第三课推广页迁移并重新编排</label>
+    <label><input class="todo" data-id="A4-03" type="checkbox">吸收第二课件全域推广/报表/诊断内容</label>
+    <label><input class="todo" data-id="A4-04" type="checkbox">把所有具体金额/ROAS经验值标记为“需核验”</label>
+    <label><input class="todo" data-id="A4-05" type="checkbox">制作1个完整“新品从投到判断”的案例</label>
+  </div>
+</div>
+
+    </section>
+    
+    <section class="page" data-title="09｜Todo：商品流量诊断器">
+      <h1>09｜Todo：商品流量诊断器</h1>
+      <div class="subtitle">这是目前最值得优先新建的小工具之一</div>
+      
+<div class="diagnosis">
+  <div class="input-card"><h3>商家输入</h3><p>曝光、点击率、点击后支付率/转化、ROAS、库存、品质分、退款/售后、是否新品、是否推广。</p></div>
+  <div class="arrow">→</div>
+  <div class="input-card"><h3>系统判断</h3><p>卡在曝光 / 点击 / 转化 / 承接 / 利润哪一层，并判断“量不足”还是“商品弱”。</p></div>
+  <div class="arrow">→</div>
+  <div class="input-card"><h3>给出动作</h3><p>主图、标题、价格、商详、尺码、品质、库存、推广设置、活动、补货等排序建议。</p></div>
+</div>
+<div class="todo-box wide">
+  <h3>MVP Todo</h3>
+  <label><input class="todo" data-id="T3-01" type="checkbox">确定输入字段与4层诊断树</label>
+  <label><input class="todo" data-id="T3-02" type="checkbox">设计“问题严重度 + 优先级”输出</label>
+  <label><input class="todo" data-id="T3-03" type="checkbox">加入新品 / 稳定款 / 弱款不同判断逻辑</label>
+  <label><input class="todo" data-id="T3-04" type="checkbox">增加“为什么这样判断”解释区</label>
+  <label><input class="todo" data-id="T3-05" type="checkbox">接入第三课与推广课的对应知识页</label>
+</div>
+
+    </section>
+    
+    <section class="page" data-title="10｜Todo：标题课程 & 标题工具升级">
+      <h1>10｜Todo：标题课程 & 标题工具升级</h1>
+      <div class="subtitle">从“帮我写标题”升级到“写 → 上架 → 看搜索词 → 再优化”</div>
+      
+<div class="cycle">
+  <div>生成标题</div><b>→</b><div>上架测试</div><b>→</b><div>看搜索词</div><b>→</b><div>诊断缺口</div><b>→</b><div>输出新版本</div>
+</div>
+<div class="split">
+  <div>
+    <h3>工具新入口</h3>
+    <ul>
+      <li>「新商品标题生成」</li>
+      <li>「已有标题诊断」</li>
+      <li>「搜索词反向优化」</li>
+      <li>「A/B版本对比」</li>
+    </ul>
+  </div>
+  <div class="todo-box">
+    <label><input class="todo" data-id="T1-01" type="checkbox">定义标题诊断维度：品类/人群/材质/风格/季节/场景</label>
+    <label><input class="todo" data-id="T1-02" type="checkbox">增加重复词/弱相关词/信息缺失提示</label>
+    <label><input class="todo" data-id="T1-03" type="checkbox">支持输入搜索词并建议补词/删词</label>
+    <label><input class="todo" data-id="T1-04" type="checkbox">输出“为什么改”和“改了什么”</label>
+  </div>
+</div>
+
+    </section>
+    
+    <section class="page" data-title="11｜Todo：点击率专项 & AI主图工具升级">
+      <h1>11｜Todo：点击率专项 & AI主图工具升级</h1>
+      <div class="subtitle">把“生成好看图”升级成“生成真实、合规、站点适配、能用于电商的图”</div>
+      
+<div class="four-cards">
+  <div><b>站点推荐</b><p>根据站点 + 年龄自动推荐人模、人种、场景、背景成熟度。</p></div>
+  <div><b>图物一致保护</b><p>锁定件数、颜色、材质、版型、工艺、印花位置。</p></div>
+  <div><b>儿童安全感</b><p>年龄适配动作、配饰、妆容，避免成人化儿童摆拍。</p></div>
+  <div><b>类目模板</b><p>上装 / 下装 / 套装 / 礼服 / 外套等分别突出关键结构。</p></div>
+</div>
+<div class="todo-box wide">
+  <label><input class="todo" data-id="T2-01" type="checkbox">把第二课件P91-92的人模/背景经验转成预设推荐逻辑</label>
+  <label><input class="todo" data-id="T2-02" type="checkbox">新增“欧洲儿童成人化动作风险”禁止规则</label>
+  <label><input class="todo" data-id="T2-03" type="checkbox">增加“图物一致保护层”总开关</label>
+  <label><input class="todo" data-id="T2-04" type="checkbox">把人模与无人模工具共用一套商品结构识别逻辑</label>
+  <label><input class="todo" data-id="T2-05" type="checkbox">课程中加入“站点差异化视觉”的真实案例页</label>
+</div>
+
+    </section>
+    
+    <section class="page" data-title="12｜Todo：新课《多站点视觉本地化》">
+      <h1>12｜Todo：新课《多站点视觉本地化》</h1>
+      <div class="subtitle">把AI工具背后的“市场理解”单独讲出来，形成差异化课程</div>
+      
+<div class="country-strip">
+  <div><b>北美</b><span>自然、生活方式、校园、家庭感</span></div>
+  <div><b>拉美</b><span>阳光、色彩、度假、活力</span></div>
+  <div><b>英国/西欧</b><span>田园、学院、克制、质感</span></div>
+  <div><b>北欧</b><span>简洁、自然、低饱和、留白</span></div>
+</div>
+<div class="split">
+  <div>
+    <h3>课程核心</h3>
+    <ul>
+      <li>为什么同一套图不适合所有市场</li>
+      <li>年龄段 × 站点 × 商品风格如何共同决定视觉</li>
+      <li>人模 / 无人模分别怎么本地化</li>
+      <li>哪些动作、配饰和场景要避免</li>
+    </ul>
+  </div>
+  <div class="todo-box">
+    <label><input class="todo" data-id="C2-01" type="checkbox">建立4大市场视觉风格对照表</label>
+    <label><input class="todo" data-id="C2-02" type="checkbox">各做2个“同款不同站点”案例</label>
+    <label><input class="todo" data-id="C2-03" type="checkbox">绑定AI主图工具现场实操</label>
+    <label><input class="todo" data-id="C2-04" type="checkbox">形成可复用的站点视觉知识库</label>
+  </div>
+</div>
+
+    </section>
+    
+    <section class="page" data-title="13｜Todo：AI商品视频课程 + 工具">
+      <h1>13｜Todo：AI商品视频课程 + 工具</h1>
+      <div class="subtitle">视频不只做“动态主图”，而是用15-30秒解决穿着感、细节感与使用场景</div>
+      
+<div class="timeline">
+  <span><b>0-2s</b>完整穿搭</span>
+  <span><b>2-5s</b>正侧背</span>
+  <span><b>5-8s</b>面料细节</span>
+  <span><b>8-11s</b>行走动态</span>
+  <span><b>11-13s</b>场景动作</span>
+  <span><b>13-15s</b>最终展示</span>
+</div>
+<div class="split">
+  <div>
+    <h3>课程</h3>
+    <p>短视频核心卖点、镜头顺序、场景、字幕/讲解、侵权风险、AI生成方法。</p>
+    <h3>工具</h3>
+    <p>商品信息 → 目标站点 → 模特/场景 → 视频时长 → 分镜 → Prompt → 禁止项。</p>
+  </div>
+  <div class="todo-box">
+    <label><input class="todo" data-id="C4-01" type="checkbox">确定15秒/30秒两套标准分镜模板</label>
+    <label><input class="todo" data-id="C4-02" type="checkbox">按品类建立视频卖点模板</label>
+    <label><input class="todo" data-id="C4-03" type="checkbox">开发Prompt生成器MVP</label>
+    <label><input class="todo" data-id="C4-04" type="checkbox">增加“复刻已有优质视频结构”模式</label>
+  </div>
+</div>
+
+    </section>
+    
+    <section class="page" data-title="14｜Todo：品质课程 + 上新前自查工具">
+      <h1>14｜Todo：品质课程 + 上新前自查工具</h1>
+      <div class="subtitle">把第二课件前37页从“招商会知识”变成“新商可执行SOP”</div>
+      
+<div class="quality-grid">
+  <span>尺寸/合身</span><span>薄透</span><span>克重</span><span>色差</span>
+  <span>异味</span><span>刺肤</span><span>纰裂</span><span>缝制</span>
+  <span>印绣花</span><span>图物一致</span><span>洗水唛</span><span>童装安全</span>
+</div>
+<div class="split">
+  <div>
+    <h3>建议课程名</h3>
+    <div class="big-quote small">《童装品质自检与售后优化》</div>
+    <p>主线：品质看板 → 客诉/退货 → 找原因 → 上新前预防 → 形成工厂改进清单。</p>
+  </div>
+  <div class="todo-box">
+    <label><input class="todo" data-id="B4-01" type="checkbox">把品质知识压缩成“12项上新前自查”</label>
+    <label><input class="todo" data-id="B4-02" type="checkbox">按上装/下装/套装/礼服等分品类规则</label>
+    <label><input class="todo" data-id="B4-03" type="checkbox">开发勾选式Checklist工具</label>
+    <label><input class="todo" data-id="B4-04" type="checkbox">输出“风险项 + 整改建议 + 是否建议上架”</label>
+    <label><input class="todo" data-id="B4-05" type="checkbox">高时效法规口径增加“需复核”标记</label>
+  </div>
+</div>
+
+    </section>
+    
+    <section class="page" data-title="15｜经营进阶课程储备">
+      <h1>15｜经营进阶课程储备</h1>
+      <div class="subtitle">第二课件里不是所有内容都要现在讲，但可以形成专题库</div>
+      
+<div class="reserve-grid">
+  <div><h3>D1 活动与商品生命周期</h3><p>新品期 / 成长期 / 稳定期 / 衰退期分别怎么上新、活动、投放、补货、清仓。</p><span class="tag later">值得做</span></div>
+  <div><h3>D2 多站点经营</h3><p>进入更多市场后，视觉、素材、库存、履约、规则如何差异化。</p><span class="tag later">与AI课程联动</span></div>
+  <div><h3>D3 品牌经营基础</h3><p>品牌素材、品牌形象、品牌分等，适合成熟商家。</p><span class="tag later">后置</span></div>
+  <div><h3>D4 欧盟本地仓入门</h3><p>仓、头程、补货、VAT、尾程等，适合作为专项招商/成熟商家专题。</p><span class="tag later">专项</span></div>
+</div>
+<div class="callout"><b>原则：</b>经营进阶内容不要挤占新商必修课时长；以专题直播、进阶班或资料库形式存在更合适。</div>
+
+    </section>
+    
+    <section class="page" data-title="16｜Todo：培训日历升级成“知识门户”">
+      <h1>16｜Todo：培训日历升级成“知识门户”</h1>
+      <div class="subtitle">你已经有日历工具，下一步可以把它升级成整个课程体系的统一入口</div>
+      
+<div class="portal">
+  <div><b>课程日历</b><span>什么时候播</span></div>
+  <div><b>课程地图</b><span>我该学哪一课</span></div>
+  <div><b>工具中心</b><span>标题/主图/诊断/品质/视频</span></div>
+  <div><b>资料卡片</b><span>课后行动清单</span></div>
+  <div><b>更新日志</b><span>哪些规则/工具更新</span></div>
+  <div><b>买手端管理</b><span>课程排期/海报/文案/版本</span></div>
+</div>
+<div class="todo-box wide">
+  <label><input class="todo" data-id="T6-01" type="checkbox">增加“课程矩阵”视图</label>
+  <label><input class="todo" data-id="T6-02" type="checkbox">每场课程绑定对应小工具入口</label>
+  <label><input class="todo" data-id="T6-03" type="checkbox">增加“适合谁 / 学完会什么 / 下一步”卡片</label>
+  <label><input class="todo" data-id="T6-04" type="checkbox">增加“规则有更新”高亮标记</label>
+  <label><input class="todo" data-id="T6-05" type="checkbox">以后再考虑商家端只读知识门户</label>
+</div>
+
+    </section>
+    
+    <section class="page" data-title="17｜内容治理与更新机制">
+      <h1>17｜内容治理与更新机制</h1>
+      <div class="subtitle">课程越多，越需要“版本管理”，否则很快出现口径冲突</div>
+      
+<div class="governance">
+  <div class="g-card"><h3>① 永久知识</h3><p>消费者行为、流量漏斗、图物一致、数据诊断思路。</p><span class="tag done">稳定</span></div>
+  <div class="g-card"><h3>② 平台机制</h3><p>推广模式、后台路径、活动机制、功能入口。</p><span class="tag doing">定期复核</span></div>
+  <div class="g-card"><h3>③ 数字口径</h3><p>ROAS经验值、预算、费用、时效、优惠等。</p><span class="tag warn">高时效</span></div>
+  <div class="g-card"><h3>④ 法规合规</h3><p>标签、童装安全、欧盟/北美规则。</p><span class="tag warn">高风险需复核</span></div>
+</div>
+<div class="todo-box wide">
+  <label><input class="todo" data-id="GOV-01" type="checkbox">所有PPT加“版本号 + 更新时间”</label>
+  <label><input class="todo" data-id="GOV-02" type="checkbox">建立“高时效口径清单”</label>
+  <label><input class="todo" data-id="GOV-03" type="checkbox">工具内对高时效规则使用提示，不硬编码永久结论</label>
+  <label><input class="todo" data-id="GOV-04" type="checkbox">每次大改课程同步更新说明书/工具帮助文档</label>
+</div>
+
+    </section>
+    
+    <section class="page" data-title="18｜Roadmap：Now / Next / Later">
+      <h1>18｜Roadmap：Now / Next / Later</h1>
+      <div class="subtitle">建议先把最能形成闭环的几件事做出来，而不是同时铺开十个项目</div>
+      
+<div class="roadmap">
+  <div class="road now"><h3>NOW｜第一阶段</h3>
+    <p>1. 第三课V2重构</p>
+    <p>2. 新建《站内推广与数据诊断》</p>
+    <p>3. 设计“流量诊断器”MVP</p>
+    <p>4. AI主图工具补站点推荐+图物一致保护</p>
+  </div>
+  <div class="road next"><h3>NEXT｜第二阶段</h3>
+    <p>5. 标题诊断工具升级</p>
+    <p>6. 多站点视觉本地化课程</p>
+    <p>7. AI视频课程+Prompt工具</p>
+    <p>8. 品质课程+上新前自查工具</p>
+  </div>
+  <div class="road later"><h3>LATER｜第三阶段</h3>
+    <p>9. 培训日历升级知识门户</p>
+    <p>10. 商品生命周期/活动课</p>
+    <p>11. 品牌经营专题</p>
+    <p>12. 欧盟本地仓专题</p>
+  </div>
+</div>
+<div class="callout"><b>排序逻辑：</b>优先做“已有内容复用率高 + 商家高频需要 + 能直接绑定工具 + 能形成闭环”的项目。</div>
+
+    </section>
+    
+    <section class="page" data-title="19｜优先级 Backlog">
+      <h1>19｜优先级 Backlog</h1>
+      <div class="subtitle">建议用 Impact × Effort 管理，而不是靠灵感决定下一步做什么</div>
+      
+<div class="backlog">
+  <div class="bucket"><h3>P0｜马上做</h3><p>第三课V2</p><p>推广课</p><p>流量诊断器</p></div>
+  <div class="bucket"><h3>P1｜紧接着做</h3><p>AI主图工具升级</p><p>标题诊断工具</p><p>多站点视觉本地化</p></div>
+  <div class="bucket"><h3>P2｜形成第二波</h3><p>品质课+自查</p><p>AI视频课+工具</p><p>培训门户</p></div>
+  <div class="bucket"><h3>P3｜专题储备</h3><p>商品生命周期</p><p>品牌经营</p><p>欧盟本地仓</p></div>
+</div>
+<div class="todo-box wide">
+  <h3>项目管理 Todo</h3>
+  <label><input class="todo" data-id="PM-01" type="checkbox">每个项目只设1个明确“商家最终会做的动作”</label>
+  <label><input class="todo" data-id="PM-02" type="checkbox">每门课控制在1条主线，不堆满所有知识</label>
+  <label><input class="todo" data-id="PM-03" type="checkbox">每个工具先做MVP，再加高级模式</label>
+  <label><input class="todo" data-id="PM-04" type="checkbox">所有课程/工具都进入统一版本清单</label>
+</div>
+
+    </section>
+    
+    <section class="page" data-title="20｜衡量成功：不是“做了多少”，而是“商家会不会用”">
+      <h1>20｜衡量成功：不是“做了多少”，而是“商家会不会用”</h1>
+      <div class="subtitle">未来可以逐渐建立简单、可观察的项目指标</div>
+      
+<div class="kpi-grid">
+  <div><b>课程理解</b><span>课后是否能说出下一步动作</span></div>
+  <div><b>工具使用</b><span>课程后是否真的打开工具</span></div>
+  <div><b>执行转化</b><span>是否完成改图/改标题/投放/自查</span></div>
+  <div><b>重复使用</b><span>工具是否在第二次、第三次上新继续用</span></div>
+  <div><b>问题减少</b><span>常见低级错误是否下降</span></div>
+  <div><b>培训效率</b><span>买手重复答疑是否减少</span></div>
+</div>
+<div class="callout"><b>长期价值：</b>当培训和工具开始减少重复答疑、提高商家自助能力时，这套体系就从“内容项目”升级成了“运营基础设施”。</div>
+
+    </section>
+    
+    <section class="page" data-title="21｜终态：帕丁熊新商成长操作系统">
+      <h1>21｜终态：帕丁熊新商成长操作系统</h1>
+      <div class="subtitle">把课程、工具、日历、知识库和诊断逻辑真正连起来</div>
+      
+<div class="final-system">
+  <div class="core">新商成长OS</div>
+  <div class="orbit o1">课程矩阵</div>
+  <div class="orbit o2">工具矩阵</div>
+  <div class="orbit o3">数据诊断</div>
+  <div class="orbit o4">培训日历</div>
+  <div class="orbit o5">知识库</div>
+  <div class="orbit o6">版本更新</div>
+</div>
+<div class="final-actions">
+  <h3>建议从这4件事正式开工</h3>
+  <ol>
+    <li><b>第三课V2：</b>从“综合流量课”收敛成“看懂流量+诊断”。</li>
+    <li><b>推广课：</b>把深度广告内容独立出来，形成真正的主动拿量课。</li>
+    <li><b>流量诊断器：</b>作为第三课与推广课共同的课后工具。</li>
+    <li><b>AI主图工具升级：</b>把站点本地化、图物一致和儿童安全真正做进规则层。</li>
+  </ol>
+</div>
+<div class="vision-strip small">
+  <span>最终结果</span>
+  <strong>不是“更多PPT”，而是一套会持续生长的商家成长产品体系。</strong>
+</div>
+
+    </section>
+    
+  </main>
+  <footer class="footer">
+    <button id="prev" class="nav-btn">← 上一页</button>
+    <div class="hint">支持 ← → / PageUp PageDown 翻页 · Todo会保存在本机浏览器</div>
+    <button id="next" class="nav-btn primary">下一页 →</button>
+  </footer>
+</div>
+<div class="modal">
+  <div class="modal-card">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:16px">
+      <h2>全部 Todo</h2>
+      <button id="closeModal" class="icon-btn">关闭</button>
+    </div>
+    <div class="task-list"></div>
+  </div>
+</div>
+<script>
+const pages=[...document.querySelectorAll('.page')];
+let idx=Number(localStorage.getItem('pd_plan_page')||0);
+idx=Math.max(0,Math.min(pages.length-1,idx));
+const progress=document.querySelector('.progress'), count=document.querySelector('.page-count');
+const prev=document.querySelector('#prev'), next=document.querySelector('#next'), jump=document.querySelector('#jump');
+const taskSummary=document.querySelector('.task-summary');
+const modal=document.querySelector('.modal'), taskList=document.querySelector('.task-list');
+function show(i){
+ idx=Math.max(0,Math.min(pages.length-1,i));
+ pages.forEach((p,n)=>p.classList.toggle('active',n===idx));
+ progress.style.width=((idx+1)/pages.length*100)+'%';
+ count.textContent=`${idx+1} / ${pages.length}`;
+ prev.disabled=idx===0; next.disabled=idx===pages.length-1;
+ jump.value=idx;
+ localStorage.setItem('pd_plan_page',idx);
+}
+pages.forEach((p,i)=>{const o=document.createElement('option');o.value=i;o.textContent=p.dataset.title;jump.appendChild(o)});
+prev.onclick=()=>show(idx-1);next.onclick=()=>show(idx+1);jump.onchange=e=>show(Number(e.target.value));
+document.addEventListener('keydown',e=>{
+ if(e.key==='ArrowRight'||e.key==='PageDown')show(idx+1);
+ if(e.key==='ArrowLeft'||e.key==='PageUp')show(idx-1);
+ if(e.key==='Escape')modal.classList.remove('open');
+});
+function loadTasks(){
+ const state=JSON.parse(localStorage.getItem('pd_plan_tasks')||'{}');
+ document.querySelectorAll('.todo').forEach(cb=>{
+   cb.checked=!!state[cb.dataset.id];
+   cb.closest('label')?.classList.toggle('done-task',cb.checked);
+   cb.onchange=()=>{
+     state[cb.dataset.id]=cb.checked;
+     localStorage.setItem('pd_plan_tasks',JSON.stringify(state));
+     cb.closest('label')?.classList.toggle('done-task',cb.checked);
+     updateSummary(); renderTasks();
+   }
+ });
+ updateSummary(); renderTasks();
+}
+function updateSummary(){
+ const all=[...document.querySelectorAll('.todo')], done=all.filter(x=>x.checked).length;
+ taskSummary.textContent=`Todo ${done}/${all.length} 已完成`;
+}
+function renderTasks(){
+ taskList.innerHTML='';
+ [...document.querySelectorAll('.todo')].forEach(cb=>{
+   const page=cb.closest('.page');
+   const item=document.createElement('div'); item.className='task-item'+(cb.checked?' done':'');
+   item.innerHTML=`<b>${cb.dataset.id}</b><span>${cb.closest('label').innerText.trim()}</span><em style="margin-left:auto;color:#8a8178;font-style:normal">${page.dataset.title}</em>`;
+   taskList.appendChild(item);
+ })
+}
+document.querySelector('#allTasks').onclick=()=>modal.classList.add('open');
+document.querySelector('#closeModal').onclick=()=>modal.classList.remove('open');
+modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('open')});
+document.querySelector('#printBtn').onclick=()=>window.print();
+document.querySelector('#resetBtn').onclick=()=>{
+ if(confirm('确认清空所有Todo完成状态和当前页记录？')){
+   localStorage.removeItem('pd_plan_tasks');localStorage.removeItem('pd_plan_page');location.reload();
+ }
+};
+loadTasks();show(idx);
+</script>
+</body>
+</html>
