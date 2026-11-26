@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0d11">
+<title>帕丁熊｜TEMU商家培训讲师提词器 V1.1 单屏版</title>
+<style>
+:root{--bg:#090b0f;--panel:#14171d;--panel2:#1b1f27;--panel3:#222731;--line:#303640;--text:#f3f0e9;--muted:#a8adb7;--gold:#eab568;--gold2:#ffcc83;--orange:#f39b43;--red:#e47768;--green:#7cc5a0;--blue:#86b7e8;--shadow:0 18px 50px rgba(0,0,0,.32);--font:18px}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif}body{background:radial-gradient(ellipse at 70% -10%,rgba(190,119,44,.14),transparent 38%),linear-gradient(180deg,#0b0d12,#090b0f 58%);overscroll-behavior-y:contain}button,input{font:inherit}button{cursor:pointer;color:inherit}.app{min-height:100vh;padding-bottom:calc(86px + env(safe-area-inset-bottom))}.topbar{position:sticky;top:0;z-index:30;background:rgba(10,12,16,.94);backdrop-filter:blur(18px);border-bottom:1px solid rgba(234,181,104,.18);padding:12px 18px}.top-inner{max-width:1320px;margin:auto;display:flex;align-items:center;gap:14px}.brand{display:flex;align-items:center;gap:11px;min-width:210px}.brand-mark{width:36px;height:36px;border:1px solid rgba(234,181,104,.7);border-radius:11px;display:grid;place-items:center;color:var(--gold2);font-weight:800;background:linear-gradient(145deg,rgba(234,181,104,.2),rgba(234,181,104,.03));box-shadow:0 0 22px rgba(234,181,104,.1)}.brand-title{font-weight:750;letter-spacing:.04em;font-size:15px}.brand-sub{color:var(--muted);font-size:11px;margin-top:2px}.top-progress{flex:1;min-width:70px}.progress-meta{display:flex;justify-content:space-between;gap:10px;color:var(--muted);font-size:11px;margin-bottom:6px}.progress-track{height:4px;border-radius:10px;background:#282d36;overflow:hidden}.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#b87935,var(--gold2));border-radius:10px;transition:width .25s}.top-actions{display:flex;align-items:center;gap:7px}.icon-btn,.small-btn{border:1px solid var(--line);background:#171b22;border-radius:10px;padding:8px 10px;color:#e9e4d9;font-size:12px;white-space:nowrap}.icon-btn:hover,.small-btn:hover{border-color:var(--gold);background:#242831}.timer{display:flex;align-items:center;gap:6px;padding:5px 7px;border:1px solid var(--line);border-radius:10px;background:#12161c}.timer-value{font-variant-numeric:tabular-nums;color:var(--gold2);font-size:13px;min-width:52px;text-align:center}.timer button{border:0;background:transparent;color:var(--muted);font-size:12px;padding:3px}
+.layout{max-width:1320px;margin:0 auto;padding:22px 18px;display:grid;grid-template-columns:245px minmax(0,1fr);gap:20px}.sidebar{position:sticky;top:88px;align-self:start;max-height:calc(100vh - 110px);overflow:auto;border:1px solid var(--line);border-radius:18px;background:rgba(19,22,29,.84);padding:14px}.side-heading{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:11px;letter-spacing:.12em;margin:2px 4px 12px}.chapter{margin-bottom:7px}.chapter-btn{width:100%;display:flex;align-items:center;justify-content:space-between;gap:8px;border:1px solid transparent;border-radius:11px;background:transparent;padding:11px 10px;text-align:left;color:#d8d9dc;font-size:13px}.chapter-btn:hover,.chapter-btn.active{background:linear-gradient(90deg,rgba(234,181,104,.13),rgba(234,181,104,.035));border-color:rgba(234,181,104,.28);color:var(--gold2)}.chapter-info{display:flex;align-items:center;gap:9px}.chapter-no{font-size:10px;color:var(--gold);font-weight:800}.chapter-pages{color:#858c98;font-size:10px}.side-tip{border-top:1px solid var(--line);margin-top:13px;padding:13px 5px 3px;color:#858c98;font-size:11px;line-height:1.7}
+.content{min-width:0}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 0 12px;flex-wrap:wrap}.crumb{font-size:12px;color:var(--muted)}.crumb strong{color:var(--gold2);font-weight:650}.toolbar-actions{display:flex;gap:7px;align-items:center;flex-wrap:wrap}.select-like{border:1px solid var(--line);background:#141820;color:#d9dce1;border-radius:9px;padding:8px 10px;font-size:12px}.font-mobile{display:none}.slide-card{border:1px solid rgba(234,181,104,.24);border-radius:22px;overflow:hidden;background:linear-gradient(145deg,rgba(27,31,39,.98),rgba(16,19,25,.98));box-shadow:var(--shadow);min-height:500px}.slide-top{padding:clamp(20px,4vw,38px);background:radial-gradient(ellipse at 90% 0%,rgba(220,147,67,.15),transparent 44%),linear-gradient(120deg,rgba(234,181,104,.045),transparent 55%);border-bottom:1px solid rgba(234,181,104,.15)}.slide-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:18px}.page-pill{font-size:11px;color:#1a1712;background:linear-gradient(135deg,#f8d69f,#d99a4c);font-weight:850;border-radius:7px;padding:5px 9px;letter-spacing:.04em}.type-pill{font-size:11px;color:var(--gold2);border:1px solid rgba(234,181,104,.35);border-radius:20px;padding:4px 9px}.section-pill{font-size:11px;color:#aab1bd}.slide-title{font-size:clamp(25px,4.2vw,39px);line-height:1.24;letter-spacing:.01em;margin:0 0 12px;font-weight:780}.slide-sub{font-size:13px;line-height:1.7;color:#b6bac3;margin:0;max-width:850px}.keyline{margin-top:23px;border-left:3px solid var(--gold);padding:10px 14px;background:rgba(234,181,104,.075);border-radius:0 11px 11px 0;color:#ffdda9;font-size:clamp(16px,2.2vw,20px);font-weight:700;line-height:1.55}.slide-body{padding:clamp(17px,3.3vw,30px);display:grid;gap:15px}.block{border:1px solid rgba(255,255,255,.075);border-radius:15px;background:rgba(255,255,255,.025);padding:16px 17px}.block-head{display:flex;align-items:center;gap:8px;color:var(--gold2);font-size:12px;font-weight:750;letter-spacing:.08em;margin-bottom:10px}.block-head .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px rgba(234,181,104,.7)}.bullet-list{margin:0;padding-left:19px;color:#e2e3e6;font-size:var(--font);line-height:1.8}.bullet-list li{padding-left:3px;margin:2px 0}.talk{font-size:var(--font);line-height:1.9;color:#e8e8e8;white-space:pre-line}.talk strong,.bullet-list strong{color:#ffcf8d}.hint{border-radius:13px;padding:13px 15px;display:flex;gap:11px;align-items:flex-start;font-size:13px;line-height:1.75}.hint .hint-label{flex:0 0 auto;font-weight:800;letter-spacing:.03em}.hint.interact{background:rgba(110,157,208,.10);border:1px solid rgba(110,157,208,.23);color:#d4e6f8}.hint.focus{background:rgba(234,181,104,.09);border:1px solid rgba(234,181,104,.2);color:#f7d9ab}.hint.next{background:rgba(115,184,147,.08);border:1px solid rgba(115,184,147,.2);color:#c9e9d7}.full-script{display:none;border:1px solid rgba(234,181,104,.28);border-radius:15px;background:rgba(234,181,104,.045);padding:17px}.full-script.open{display:block;animation:fadeIn .18s ease}.full-script .talk{font-size:calc(var(--font) - 1px)}.script-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}.bottom-nav{position:fixed;z-index:25;bottom:0;left:0;right:0;padding:11px 16px calc(11px + env(safe-area-inset-bottom));background:rgba(10,12,16,.95);backdrop-filter:blur(18px);border-top:1px solid rgba(234,181,104,.2)}.bottom-inner{max-width:1320px;margin:auto;display:grid;grid-template-columns:1fr minmax(100px,auto) 1fr;gap:12px;align-items:center}.nav-btn{border:1px solid rgba(234,181,104,.35);background:#1b2028;color:#f4e9d6;border-radius:13px;padding:12px 16px;font-weight:700;font-size:14px}.nav-btn.primary{background:linear-gradient(135deg,#f2c47e,#d58c3b);border-color:#e9b66c;color:#20170d}.nav-btn:disabled{opacity:.28;cursor:not-allowed}.bottom-center{text-align:center;color:var(--muted);font-size:11px;line-height:1.5}.bottom-center strong{display:block;color:var(--gold2);font-size:13px}.bottom-right{display:flex;justify-content:flex-end}.bottom-left{display:flex;justify-content:flex-start}
+.drawer-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.62);z-index:40}.drawer-backdrop.show{display:block}.drawer{position:absolute;left:0;top:0;bottom:0;width:min(86vw,330px);background:#11151b;border-right:1px solid var(--line);padding:18px;overflow:auto}.drawer .sidebar{position:static;max-height:none;border:0;padding:0;background:transparent}.close-drawer{float:right;border:1px solid var(--line);border-radius:8px;background:#1c222b;padding:7px 10px;color:#ddd}.toast{position:fixed;z-index:60;left:50%;bottom:100px;transform:translateX(-50%);background:#252a33;border:1px solid rgba(234,181,104,.35);color:#ffe2b8;padding:9px 14px;border-radius:30px;font-size:12px;opacity:0;pointer-events:none;transition:opacity .2s}.toast.show{opacity:1}.focus-mode .sidebar{display:none}.focus-mode .layout{grid-template-columns:minmax(0,1fr);max-width:960px}.focus-mode .top-progress{max-width:260px}.focus-mode .brand{min-width:0}.light{--bg:#eeeae2;--panel:#fff;--panel2:#f7f3eb;--panel3:#eee7dc;--line:#d8d0c2;--text:#29251f;--muted:#746d63;background:linear-gradient(180deg,#f3efe7,#e9e3d8)}.light .topbar,.light .bottom-nav{background:rgba(246,242,234,.95)}.light .brand-title,.light .slide-title{color:#29251f}.light .slide-card{background:linear-gradient(145deg,#fff,#f8f4ec)}.light .slide-sub,.light .talk,.light .bullet-list{color:#39352e}.light .block{background:rgba(80,60,30,.035);border-color:rgba(80,60,30,.12)}.light .select-like,.light .icon-btn,.light .small-btn{background:#fff;color:#39352e}.light .nav-btn{background:#fff;color:#3a3023}.light .nav-btn.primary{background:linear-gradient(135deg,#f2c47e,#d58c3b);color:#20170d}.light .keyline{color:#6c4318}.light .full-script{background:rgba(234,181,104,.09)}.light .talk strong{color:#9b5c16}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:900px){.font-mobile{display:inline-flex}.layout{grid-template-columns:minmax(0,1fr);padding:14px 13px}.sidebar.desktop{display:none}.brand{min-width:0}.brand-sub{display:none}.top-inner{gap:9px}.topbar{padding:10px 12px}.timer{display:flex;padding:3px 5px;gap:3px}.timer-value{min-width:40px;font-size:11px}.timer button{font-size:10px;padding:2px}.slide-card{min-height:0}.slide-top{padding:23px 20px}.slide-body{padding:16px}.toolbar{margin-bottom:9px}.bottom-nav{padding-left:10px;padding-right:10px}.nav-btn{padding:12px 12px}.top-actions .hide-mobile{display:none}}
+@media(max-width:520px){.progress-meta{display:none}.timer button:last-child{display:none}.brand-mark{width:32px;height:32px}.brand-title{font-size:13px}.top-actions{gap:4px}.icon-btn,.small-btn{padding:7px 8px;font-size:11px}.progress-meta{font-size:10px}.slide-title{font-size:26px}.slide-sub{font-size:12px}.keyline{font-size:16px}.block{padding:13px}.talk,.bullet-list{font-size:calc(var(--font) - 1px)}.hint{font-size:12px;padding:11px}.bottom-inner{grid-template-columns:1fr auto 1fr;gap:6px}.nav-btn{font-size:12px;padding:12px 8px}.bottom-center{font-size:10px}.bottom-center strong{font-size:12px}}
+@media(min-width:901px){.menu-mobile{display:none}}
+
+/* V1.1｜iPhone单屏演讲模式：当前页完整内容同屏，不使用纵向滚动 */
+:root{--app-height:100vh;--fit:1}
+@supports(height:100dvh){:root{--app-height:100dvh}}
+@media(max-width:900px){
+  html,body{width:100%;height:100%;min-height:0;overflow:hidden!important;overscroll-behavior:none}
+  body{position:fixed;inset:0;height:var(--app-height);min-height:0;touch-action:pan-x pan-y}
+  .app{height:var(--app-height);min-height:0;padding:0;display:flex;flex-direction:column;overflow:hidden}
+  .topbar{position:relative;top:auto;z-index:30;flex:0 0 auto;padding:calc(5px + env(safe-area-inset-top)) 8px 6px}
+  .top-inner{gap:5px;min-height:32px}
+  .menu-mobile{flex:0 0 auto;padding:5px 7px;font-size:12px}
+  .brand{flex:0 0 auto;min-width:0;gap:6px}
+  .brand-mark{width:27px;height:27px;border-radius:8px;font-size:13px}
+  .brand-title{font-size:10.5px;letter-spacing:0;white-space:nowrap}
+  .brand-sub{display:none}
+  .top-progress{flex:1 1 auto;min-width:34px}
+  .progress-meta{display:flex;gap:3px;margin-bottom:4px;font-size:8px;white-space:nowrap;overflow:hidden}
+  .progress-meta span{overflow:hidden;text-overflow:ellipsis}
+  .progress-track{height:3px}
+  .top-actions{flex:0 0 auto;gap:3px}
+  .top-actions .hide-mobile{display:none!important}
+  .timer{gap:1px;padding:2px 3px;border-radius:7px}
+  .timer-value{min-width:32px;font-size:9px}
+  .timer button{font-size:9px;padding:2px}
+  .timer button:last-child{display:none}
+  .icon-btn.mobile-copy,.icon-btn.mobile-jump{display:inline-flex;align-items:center;justify-content:center;padding:5px 6px;font-size:9px;border-radius:7px}
+  .layout{flex:1 1 auto;min-height:0;max-height:none;overflow:hidden;display:block;padding:7px 8px;margin:0;width:100%;}
+  .sidebar.desktop{display:none!important}
+  .content{height:100%;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+  .toolbar{display:none!important}
+  .slide-card{height:100%;min-height:0;max-height:100%;display:flex;flex-direction:column;overflow:hidden;border-radius:13px;box-shadow:0 8px 26px rgba(0,0,0,.28)}
+  .slide-top{flex:0 0 auto;padding:calc(7px * var(--fit)) calc(11px * var(--fit)) calc(6px * var(--fit));}
+  .slide-meta{gap:5px;margin-bottom:calc(5px * var(--fit));}
+  .page-pill{font-size:calc(9px * var(--fit));padding:3px 6px;border-radius:5px}
+  .type-pill{font-size:calc(9px * var(--fit));padding:2px 7px}
+  .section-pill{font-size:calc(9px * var(--fit));}
+  .slide-title{font-size:calc(clamp(18px,4.65vw,22px) * var(--fit));line-height:1.16;letter-spacing:0;margin:0 0 calc(4px * var(--fit));}
+  .slide-sub{display:none}
+  .keyline{margin-top:calc(5px * var(--fit));padding:calc(6px * var(--fit)) calc(9px * var(--fit));font-size:calc(clamp(12px,3.25vw,14px) * var(--fit));line-height:1.32;border-left-width:2px;border-radius:0 8px 8px 0}
+  .slide-body{flex:1 1 auto;min-height:0;overflow:hidden;padding:calc(7px * var(--fit)) calc(9px * var(--fit));display:flex;flex-direction:column;gap:calc(6px * var(--fit));}
+  .block{flex:0 0 auto;min-height:0;padding:calc(7px * var(--fit)) calc(9px * var(--fit));border-radius:10px;}
+  .block-head{font-size:calc(9.5px * var(--fit));margin-bottom:calc(4px * var(--fit));letter-spacing:.04em;gap:5px}
+  .block-head .dot{width:5px;height:5px}
+  .bullet-list{font-size:calc(12.5px * var(--fit));line-height:1.32;padding-left:15px;margin:0}
+  .bullet-list li{padding-left:1px;margin:0 0 1px}
+  .script-actions{gap:5px;margin-top:calc(4px * var(--fit));}
+  .block .script-actions button#toggleFull{display:none!important}
+  .script-actions .small-btn{font-size:calc(9px * var(--fit));padding:3px 6px;border-radius:6px}
+  .full-script{display:block!important;flex:1 1 0%;min-height:0;overflow:hidden;padding:calc(7px * var(--fit)) calc(9px * var(--fit));border-radius:10px;background:rgba(234,181,104,.055)}
+  .full-script .block-head{margin-bottom:calc(4px * var(--fit));}
+  .full-script .talk{font-size:calc(12.5px * var(--fit));line-height:1.36;white-space:normal;overflow:hidden;}
+  .full-script .script-actions{display:none}
+  .hint{flex:0 0 auto;min-height:0;padding:calc(5px * var(--fit)) calc(7px * var(--fit));gap:6px;border-radius:8px;font-size:calc(9.5px * var(--fit));line-height:1.28;}
+  .hint .hint-label{flex:0 0 54px;min-width:54px;font-size:calc(9px * var(--fit));letter-spacing:0;}
+  .bottom-nav{position:relative;left:auto;right:auto;bottom:auto;z-index:25;flex:0 0 auto;padding:6px 9px calc(6px + env(safe-area-inset-bottom));}
+  .bottom-inner{grid-template-columns:1fr auto 1fr;gap:7px}
+  .nav-btn{font-size:11px;padding:8px 8px;border-radius:9px}
+  .bottom-center{font-size:9px;line-height:1.25;cursor:pointer;white-space:nowrap}
+  .bottom-center strong{font-size:11px}
+  .toast{bottom:calc(66px + env(safe-area-inset-bottom));}
+  .drawer{padding-top:calc(18px + env(safe-area-inset-top));padding-bottom:calc(18px + env(safe-area-inset-bottom));}
+  .slide-card,.slide-top,.slide-body,.block,.full-script{min-width:0}
+  .slide-card{touch-action:pan-y}
+}
+@media(max-width:390px){
+  .brand-title{font-size:9.5px}
+  .top-inner{gap:4px}
+  .mobile-copy,.mobile-jump{padding:4px 5px!important}
+  .hint .hint-label{flex-basis:49px;min-width:49px}
+}
+@media(min-width:600px) and (max-width:900px){
+  .slide-title{font-size:calc(clamp(23px,3.5vw,30px) * var(--fit))}
+  .keyline{font-size:calc(clamp(15px,2.3vw,18px) * var(--fit))}
+  .bullet-list{font-size:calc(15px * var(--fit));line-height:1.38}
+  .full-script .talk{font-size:calc(15px * var(--fit));line-height:1.42}
+  .hint{font-size:calc(12px * var(--fit));line-height:1.38}
+  .hint .hint-label{font-size:calc(11px * var(--fit));flex-basis:64px;min-width:64px}
+}
+@media(max-width:900px) and (max-height:760px){
+  .topbar{padding-top:calc(3px + env(safe-area-inset-top));padding-bottom:3px}
+  .layout{padding:4px 6px}
+  .bottom-nav{padding-top:4px;padding-bottom:calc(4px + env(safe-area-inset-bottom))}
+  .slide-top{padding-top:calc(5px * var(--fit));padding-bottom:calc(4px * var(--fit))}
+  .slide-body{gap:calc(4px * var(--fit));padding-top:calc(5px * var(--fit));padding-bottom:calc(5px * var(--fit))}
+}
+@media(min-width:901px){.mobile-copy,.mobile-jump{display:none!important}}
+
+</style>
+</head>
+<body>
+<div class="app" id="app">
+<header class="topbar"><div class="top-inner">
+  <button class="icon-btn menu-mobile" id="openMenu" aria-label="打开目录">☰</button>
+  <div class="brand"><div class="brand-mark">熊</div><div><div class="brand-title">帕丁熊 · 讲师提词器</div><div class="brand-sub">TEMU 商家培训｜标题与主图优化 V1.1 单屏版</div></div></div>
+  <div class="top-progress"><div class="progress-meta"><span id="progressSection">标题优化</span><span id="progressText">1 / 54 · PPT 77</span></div><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div></div>
+  <div class="top-actions">
+    <div class="timer" title="培训计时"><span class="timer-value" id="timerValue">00:00</span><button id="timerToggle">开始</button><button id="timerReset" title="重置计时">↺</button></div>
+    <button class="icon-btn hide-mobile" id="fontDown" title="缩小字号">A−</button><button class="icon-btn hide-mobile" id="fontUp" title="放大字号">A+</button>
+    <button class="icon-btn mobile-copy" id="copyMobile" title="复制本页完整口条">复制</button>
+    <button class="icon-btn mobile-jump" id="jumpMobile" title="跳转PPT页码">页码</button>
+    <button class="icon-btn" id="themeToggle" title="切换明暗主题">◐</button>
+    <button class="icon-btn hide-mobile" id="focusToggle" title="专注模式">专注</button>
+  </div>
+</div></header>
+<div class="layout">
+  <aside class="sidebar desktop" id="desktopSidebar"></aside>
+  <main class="content">
+    <div class="toolbar"><div class="crumb">提词器 / <strong id="crumbSection">标题优化</strong> / <span id="crumbPage">PPT 第77页</span></div><div class="toolbar-actions">
+      <select class="select-like" id="modeSelect" aria-label="提词显示模式"><option value="hybrid">智能混合</option><option value="full">完整口条优先</option><option value="quick">快速提词</option></select>
+      <button class="small-btn font-mobile" id="fontDownAlt">字号−</button><button class="small-btn font-mobile" id="fontUpAlt">字号+</button><button class="small-btn" id="jumpBtn">跳转页码</button><button class="small-btn" id="copyBtn">复制本页口条</button><button class="small-btn" id="expandAllBtn">展开全文</button>
+    </div></div>
+    <article class="slide-card" id="slideCard" aria-live="polite"></article>
+  </main>
+</div>
+<div class="bottom-nav"><div class="bottom-inner"><div class="bottom-left"><button class="nav-btn" id="prevBtn">‹ 上一页</button></div><div class="bottom-center"><strong id="bottomCounter">1 / 54</strong><span id="bottomHint">左右滑动翻页 · 键盘 ← →</span></div><div class="bottom-right"><button class="nav-btn primary" id="nextBtn">下一页 ›</button></div></div></div>
+<div class="drawer-backdrop" id="drawerBackdrop"><div class="drawer"><button class="close-drawer" id="closeMenu">关闭 ✕</button><div id="mobileSidebar"></div></div></div>
+<div class="toast" id="toast"></div>
+</div>
+<script>
+const slides = [
+{p:77,s:0,t:"章节封面｜优化搜索",tag:"转场",k:"标题解决商品能不能被找到、被理解。",b:["从商品标题切入","按为什么优化、标题结构、正反案例、工具操作展开"],f:"这一页是章节封面，不需要展开讲。提醒自己：标题解决“被找到、被理解”。接下来从标题搜索词切入。",i:"简短说明：接下来进入标题优化。",e:"把握节奏，直接进入下一页。",n:"我们先看标题搜索词怎么优化。"},
+{p:78,s:0,t:"如何优化标题搜索词",tag:"导入",k:"标题优化不是堆词，而是准确表达商品。",b:["让平台理解商品","让消费者快速判断是否符合需求","先明确真实商品信息，再组织关键词"],f:"先把标题优化的目标说清楚：让平台理解商品，让消费者快速判断商品是否符合需求。后面会讲标题结构、正反案例和工具操作。标题是商品信息表达的入口，不能只追求长，也不能把不相关的热门词硬塞进去。",i:"提示商家带着一个问题听：自己的商品标题，消费者能不能一眼看懂？",e:"准确、清晰、相关，比单纯堆词更重要。",n:"先回答第一个问题：为什么要优化好标题？"},
+{p:79,s:0,t:"为什么要优化好标题？",tag:"主讲",k:"好标题不是堆词，而是让商品更容易被找到、被看懂、被选择。",b:["获取搜索匹配机会","帮助平台理解商品属性","帮助消费者快速判断商品是否符合需求"],f:"大家可以把标题理解成商品在搜索场景里的第一段自我介绍。消费者搜索某个商品时，标题要尽可能准确地回应他的需求；平台也需要从标题等商品信息中理解商品是什么。标题表达越清楚，商品与搜索意图越容易匹配。注意不要承诺“写了某个词就一定有流量”，标题只是商品被理解和匹配的基础之一。",i:"可问：消费者搜索“女童长袖泳衣三件套”时，标题里哪些信息最应该出现？",e:"标题帮助商品被发现，但不保证流量或订单。",n:"标题不只是写给消费者看，也要让平台识别。"},
+{p:80,s:0,t:"标题如何连接商品、平台与顾客？",tag:"主讲",k:"商品真实信息 → 标题结构化表达 → 平台识别匹配 → 顾客判断点击。",b:["先有真实商品信息","把信息组织成标题","平台理解和匹配","消费者判断是否相关"],f:"标题不能脱离商品本身：人群、品类、款式、件数、属性都要来自真实商品。我们把这些信息组织得更清楚，平台更容易识别商品类别和属性，消费者也更容易判断是不是自己要找的东西。标题写得越清楚，信息差越小，但它仍然需要主图、价格、商品质量等共同承接。",i:"用泳衣案例：女童、夏季、印花、长袖、三件套分别对应什么真实信息？",e:"不要把标题描述成单一流量开关。",n:"那么，一个完整、清楚的标题具体应该长什么样？"},
+{p:81,s:0,t:"好标题长什么样？",tag:"主讲",k:"完整标题 = 前段展示层 + 后段搜索覆盖层。",b:["前段：人群、品类、件数、关键差异","后段：领型、袖长、图案、场景等真实属性","示例：女童夏季印花长袖泳衣三件套｜圆领、拉链、海边度假、泳池玩水"],f:"请大家看标题结构。前段是展示层，优先放消费者最需要先看懂的信息：卖给谁、是什么品类、几件套、有什么关键差异。后段是搜索覆盖层，补充领型、袖长、图案、使用场景等具体属性。课件示例是“女童夏季印花长袖泳衣三件套｜圆领、拉链、海边度假、泳池玩水”。不是把所有关键词平均排列，而是根据展示价值安排先后。",i:"指着示例标题，逐个拆解人群、品类、季节、款式、件数和属性。",e:"前段优先清晰，后段补充覆盖；属性必须真实。",n:"看懂结构之后，我们用正反案例判断标题是否准确。"},
+{p:82,s:0,t:"好标题 vs 差标题",tag:"互动",k:"能直接看出来的，优先写；看不出来或不符合实物的，不要乱写。",b:["正确示例：女童夏季印花长袖泳衣三件套","错误示例：女童户外运动保暖套装","检查商品、人群、属性是否真实相关"],f:"先请大家看左右两边。左边“女童夏季印花长袖泳衣三件套”，消费者能直接知道是什么商品；右边“女童户外运动保暖套装”，虽然也有关键词，但与实际泳衣不匹配。标题不是为了覆盖更多词而夸大或改变商品属性。消费者能直接判断、商品确实具备的信息才写。",i:"停顿3秒，问：右边的问题只是词不够多，还是商品信息已经写错？",e:"真实准确优先于关键词数量。",n:"知道什么不能写之后，接下来讲怎么更高效地生成标题。"},
+{p:83,s:0,t:"怎么做好标题？直接用标题生成器",tag:"主讲",k:"先生成，再判断；不要凭感觉堆词。",b:["选择准确类目","填写数量、人群、品类和核心关键词","补充详细属性和场景","检查真实性后再复制"],f:"这一页可以把工具当作标题组织助手。先选准确类目，再填写商品数量、目标人群、核心关键词和详细属性场景。生成后不要直接照搬，先检查商品名称、件数、领型、袖长、图案和场景是否真实。工具负责提高组织效率，商家负责确认商品信息。课件里的评分只是工具展示，不要理解成平台排名分或流量保证。",i:"如果现场方便，可快速演示一个商品如何填写；不方便则按五个步骤讲。",e:"生成结果需要人工复核，评分不代表平台流量承诺。",n:"标题优化还可以归纳成几个简单原则。"},
+{p:84,s:0,t:"总结：标题优化的核心，不是堆词",tag:"快讲",k:"真实、准确、相关、清晰；按展示价值安排前后顺序。",b:["没有依据的信息不写","人群、品类、件数写清楚","补充真实搜索属性","最重要的信息放前面"],f:"这一页不必重复前面所有细节。请商家记住四个词：真实、准确、相关、清晰。标题不是把所有关键词平均排在一起，而是把消费者最需要先知道的信息放前面，再补充相关属性。",i:"可让商家默念检查：人群清楚吗？品类准确吗？件数对吗？属性真实吗？",e:"标题的目标是让商品被找到、被看懂，而不是写得越长越好。",n:"下一页是标题工具入口，接下来转入商品图片优化。"},
+{p:85,s:0,t:"标题优化工具入口",tag:"快讲",k:"工具用于辅助组织标题，使用前后都要核对商品真实性。",b:["课件提供标题优化工具入口","先准备好商品真实信息","生成后检查类目、件数、属性和关键词","现场链接异常时不要停留排障"],f:"这一页主要展示工具入口，不需要花时间介绍复杂功能。提醒商家使用时准备好商品真实信息，尤其是类目、件数、属性和关键词。生成标题后人工检查，再决定是否采用。",i:"提前测试链接；如果现场无法打开，不要停留排障，继续讲流程。",e:"工具是辅助，不是自动替商家做商品判断。",n:"标题解决了商品怎么被找到，接下来讲商品图片如何争取点击。",link:"https://bdl.cdnfe.com/upload_bdl/getrich/biaoti/f83ff690-d464-4977-9e8d-b386136780a5.html",linkText:"打开标题优化工具"},
+{p:86,s:1,t:"章节封面｜优化图片",tag:"转场",k:"从“被找到”进入“被点击、被看懂”。",b:["标题让商品进入消费者视野","图片争取消费者停留和点击","整套图片帮助消费者理解商品"],f:"这一页是视觉模块封面。可以用一句话转场：标题解决找到，图片解决点开和理解。后面先讲为什么视觉重要，再讲什么样的图片能传递购买理由。",i:"不展开细节，切换到下一页。",e:"主图争取点击，后续图片帮助消费者理解商品。",n:"先看商品图片优化要解决的是什么问题。"},
+{p:87,s:1,t:"如何优化商品图片",tag:"导入",k:"今天不是只学修图，而是学会把商品讲明白。",b:["为什么必须做视觉","什么是有效视觉","AI如何辅助制作","如何验证和复制"],f:"这一页是视觉章节的引导。告诉商家，这部分不是教大家单纯把图片修得漂亮，而是从经营角度理解商品如何通过视觉被看见、被点击、被看懂和被信任。后面会沿着四个问题推进。",i:"提示商家不要只带着“怎么做一张漂亮图”的问题听课。",e:"把视觉当作商品表达和经营效率的一部分。",n:"先从一个直观问题开始：同一件货，为什么有人点，有人直接划走？"},
+{p:88,s:1,t:"工厂把好货做出来，视觉把好货卖出去",tag:"转场",k:"好货是基础，视觉负责把好货的价值展示出来。",b:["商品质量是基础","视觉把商品价值传递给消费者","AI帮助提升视觉生产效率"],f:"这是视觉培训主标题页。简短说明今天会围绕童装商品视觉和AI实战展开，核心不是美工技巧，而是让真实商品被消费者理解。",i:"不展开，进入第一张对比图。",e:"带着“同一件商品为什么点击表现不同”的问题看下一页。",n:"同一件货，为什么有人点，有人直接划走？"},
+{p:89,s:1,t:"同一件货，为什么有人点，有人直接划走？",tag:"互动",k:"同一件商品，展示方式不同，消费者的第一反应也会不同。",b:["左侧：单纯商品平铺","右侧：模特上身与场景展示","观察穿着效果、场景代入和商品轮廓"],f:"先别讲答案，让大家看两张图。问：如果你是消费者，第一眼更愿意点开哪张？为什么？引导大家关注是否能看到穿着效果、场景代入、商品轮廓和整体搭配。商品本身没有变，改变的是展示方式。视觉的作用是让消费者更快理解商品价值。",i:"停顿3秒，让商家回答；不要自己马上公布答案。",e:"互动页，给商家参与时间。",n:"接下来我们把从好货到成交的过程拆成四个问题。"},
+{p:90,s:1,t:"四个问题，走完一条从好货到成交的路",tag:"主讲",k:"为什么必须做视觉、什么是爆款视觉、AI怎么做、怎么验证与复制。",b:["01 为什么必须做","02 爆款视觉是什么","03 AI怎么做出来","04 怎么验证与复制"],f:"这一页相当于路线图。告诉商家后面不是零散技巧，而是一条从好货到成交的路径。先理解为什么视觉重要，再知道好视觉是什么，然后用AI提升生产效率，最后用数据验证和复制。",i:"可以指向四个模块快速过一遍。",e:"四个问题对应后面的四段内容。",n:"先讲第一个问题：好货为什么还需要视觉翻译？"},
+{p:91,s:1,t:"好货不是自动卖出去的，必须经过视觉翻译",tag:"主讲",k:"好货 → 被看见 → 被点开 → 被看懂 → 被相信 → 被买走。",b:["识别商品价值","把商品特点转成视觉表达","放大细节并建立信任","推动消费者继续了解和判断"],f:"商品质量好只是基础。消费者在线上看不到实物，必须通过图片理解商品是什么、适合谁、在哪里穿、穿起来怎样。视觉把商品特征转换成消费者能理解的购买理由。图片表达清楚，才有机会推动消费者继续了解；图片不准确，还可能带来预期落差。",i:"让商家复述链路：好货之后还要经过哪几个环节？",e:"视觉不是替代商品质量，而是把商品价值传递出去。",n:"那么，为什么这件事对经营结果很重要？"},
+{p:92,s:1,t:"为什么必须做",tag:"主讲",k:"平台给曝光，视觉争取点击，数据决定后续。",b:["视觉是流量入口的一部分","清晰表达帮助争取点击","后续仍需商品、价格、服务和数据共同承接"],f:"这一页先讲必要性：平台可能给商品展示机会，但消费者是否停下来、是否点开，取决于他看到的内容是否有吸引力和相关性。视觉不是唯一因素，也不是平台权重本身，但它会影响消费者行为数据。",i:"可问：如果商品有曝光但没人点，商家应该先检查什么？",e:"不要说视觉直接决定全部权重或保证成交。",n:"先看第一道关：曝光不等于点击。"},
+{p:93,s:1,t:"曝光只是路过，主图决定买家进不进店",tag:"主讲",k:"曝光是路过，主图负责争取消费者点击。",b:["主图像店铺橱窗","商品主体和主要特点要清楚","争取停留与点击，不承诺必然成交"],f:"把平台曝光比作把人带到店门口，主图就像橱窗。消费者路过时，是否愿意进店，很大程度上取决于橱窗展示。主图要让消费者快速看清商品主体、主要特点和使用效果。注意这里讲的是争取点击，不是保证点击。",i:"可以问：商家自己的主图，消费者一眼能看清商品吗？",e:"曝光不等于点击；主图首先要清楚、相关、突出商品。",n:"如果消费者连商品都看不见，货再好也容易被淹没。"},
+{p:94,s:1,t:"货海里，不出众就等于不存在",tag:"主讲",k:"商品竞争激烈，消费者注意力有限，视觉要让商品被识别。",b:["大量同类商品同时展示","主体不清、没有重点容易被略过","突出真实差异，不做夸张包装"],f:"这一页强调竞争环境。消费者面前不是只有你一家店，而是大量同类商品。图片如果主体不清、没有重点、看不出差异，商品很容易被快速略过。视觉的任务不是做夸张效果，而是让商品真实特点被清楚地看到。",i:"让商家想一想：同款竞争时，自己的商品图有什么一眼能看出的差异？",e:"突出真实差异，不做虚假夸张。",n:"线上购物还缺少线下体验，我们要看下一页。"},
+{p:95,s:1,t:"线下卖衣服有四个帮手，线上只剩一块屏幕",tag:"主讲",k:"线下有看、摸、试、讲；线上主要靠图片和视频传递。",b:["看轮廓和版型","摸面料与厚薄","试穿体验比例与舒适度","听导购讲解卖点"],f:"线下买衣服，消费者可以看版型、摸面料、试穿、听导购介绍。线上购物隔着屏幕，消费者无法直接完成这些体验。我们要把这些体验尽可能转化成图片和视频：整体展示版型、细节图呈现面料、上身图帮助判断比例，文字或视频补充功能说明。",i:"可以问：如果你在线上买一件外套，最想先确认哪三件事？",e:"图片视频是在补充线上体验，不是完全替代实物触摸。",n:"所以图片要替消费者完成一部分看、摸、试的判断。"},
+{p:96,s:1,t:"图片要替顾客看、替顾客摸、替顾客试",tag:"主讲",k:"用图片展示版型、材质和上身效果。",b:["看版型：正面、侧面、背面","摸材质：纹理、厚薄、绒感","试上身：比例、长度、松量和搭配"],f:"这一页把上一页进一步具体化。图片需要替消费者看版型、看细节；通过近景和材质展示，让消费者理解面料触感和厚度；通过适龄模特上身，帮助判断衣长、袖长、宽松度和整体比例。不能只放一张正面平铺图，就期待消费者自己想象所有信息。",i:"可举棉羽外套：整体正面、面料近景、上身比例各解决什么问题？",e:"图片应有分工，不是重复展示同一角度。",n:"视觉不仅影响消费者感受，也会反映到后续数据里。"},
+{p:97,s:1,t:"视觉不是权重本身，但会改变平台看到的数据",tag:"主讲",k:"视觉会影响点击、停留、加购、成交和退款等行为表现。",b:["观察点击与停留","观察加购与成交","关注图片与实物不一致带来的退款风险"],f:"这页需要讲得准确：我们不把视觉说成一个独立的权重按钮，但视觉会影响消费者看到商品后的行为。图片表达可能影响点击，也会影响消费者是否继续看、是否加购、是否下单；如果图片与实物不一致，还可能造成预期落差和退款。最终需要结合全链路数据判断。",i:"可以指着数据链问：点击高但退款也高，说明可能哪里出了问题？",e:"不要把示意数据当成平台算法公式或固定指标。",n:"先守住最前面的一关：点击。"},
+{p:98,s:1,t:"没有点击，后面全是零",tag:"主讲",k:"曝光 × 点击率 × 下单转化率 × 客单价 = GMV；视觉先争取点击。",b:["有曝光但无点击，后续承接无从发生","主图先守住点击入口","点击之后还要看加购、转化和客单价"],f:"用公式帮助商家理解：如果有曝光但没有点击，后面的商品详情和成交就没有机会发挥作用。主图要先把点击这道门守住。但点击不是最终目标，点击之后还要看加购、下单转化和客单价。不要为了点击做夸张或与实物不一致的图片。",i:"让商家看公式，问：点击率提升后，是不是就一定GMV提升？引导回答：还要看后续转化。",e:"点击是入口，不是成交的全部。",n:"坏视觉带来的损失，远不止拍摄费用。"},
+{p:99,s:1,t:"坏视觉最贵的，不是拍摄费",tag:"主讲",k:"真正损失可能是好货被埋没、推广费浪费、销售窗口错过、库存占现金。",b:["好货无人看见","推广曝光没有有效点击","季节窗口错过","库存周转变慢、资金占用增加"],f:"这里把视觉问题拉回经营账。商家可能觉得拍图花钱，但更大的成本可能是好货没有被看见，已经花出去的推广费用没有得到有效承接，季节款错过销售窗口，库存占用资金。特别是童装季节性明显，视觉优化需要跟上商品销售节奏。",i:"可以让商家想一款曾经备货不错、但销售窗口没抓住的商品。",e:"不要只计算拍摄成本，也要考虑机会成本。",n:"这一部分可以归纳为：平台给机会，视觉抢第一步。"},
+{p:100,s:1,t:"总结｜平台给机会，视觉抢第一步，数据决定后续",tag:"快讲",k:"平台给曝光 → 视觉争取点击 → 整套图建立信任 → 数据决定复制。",b:["平台给展示机会","视觉争取点击","整套图片建立信任","数据决定后续优化和复制"],f:"这一页把前面必要性收束起来。平台给展示机会，视觉先争取消费者点击，整套图片帮助消费者理解和建立信任，最后用数据决定是否复制。不同商品阶段、季节和竞争环境，需要关注的机会和风险也不同。",i:"不必把每个机会风险细节展开，抓住主链路。",e:"视觉不是孤立美工动作，而是商品经营链路。",n:"接下来进入第二个问题：什么样的视觉才算有效？"},
+{p:101,s:2,t:"爆款视觉到底是什么",tag:"转场",k:"爆款视觉不是美图，而是把真实商品翻译成购买理由。",b:["从商品本身出发","思考谁穿、去哪穿、为什么买、穿起来怎样"],f:"这一页是视觉方法章节引入。提醒商家：后面讲的不是单纯的拍摄风格，而是怎样把商品特征转换成消费者看得懂的购买理由。",i:"简短点题，进入生活类比。",e:"好看只是手段，购买理由才是目的。",n:"用一个容易理解的比喻解释视觉表达。"},
+{p:102,s:2,t:"后厨做好菜，还要摆盘让人想点",tag:"主讲",k:"工厂生产像后厨做菜，视觉呈现像摆盘上菜。",b:["商品面料、版型、工艺是产品基础","视觉呈现帮助消费者理解商品特点","摆盘不能改变菜本身，视觉也不能改变实物"],f:"可以把工厂生产衣服比作后厨做菜。菜做好了，只代表食材和烹饪完成；端上桌时还要摆盘，让顾客看清楚、产生食欲。服装也是一样，商品生产出来只是基础，还需要把版型、材质、细节和穿着效果展示出来。",i:"可以问：一道菜做得好，但摆盘看不出卖点，你会不会更难被吸引？",e:"摆盘不能改变菜本身；视觉也不能改变真实商品。",n:"这个比喻再往下拆：商品展示如何像摆盘一样组织信息？"},
+{p:103,s:2,t:"生活类比｜工厂生产=后厨做菜，视觉呈现=摆盘上菜",tag:"主讲",k:"清楚的主体、合理的场景和层次，让消费者更快理解。",b:["商品主体清楚","场景提供环境感","道具少而精","光线帮助呈现材质"],f:"这一页是上一页比喻的具体展开。不要把重点放在“修得多漂亮”，而是看主体是否清楚、画面是否有层次、场景是否服务商品。普通商品平铺可能看不出空间和穿着效果；合理视觉呈现能让消费者更快理解商品特点。",i:"指着左右对比，问：右边多传递了哪些信息？",e:"场景与摆盘是为商品服务，不是喧宾夺主。",n:"真正的爆款视觉，要把商品翻译成购买理由。"},
+{p:104,s:2,t:"爆款视觉不是美图，是把真实商品翻译成购买理由",tag:"主讲",k:"真实商品 → 谁穿 / 去哪穿 / 为什么买 / 穿起来怎样。",b:["目标人群","使用场景","商品功能或特点","上身效果"],f:"这页是视觉方法的核心定义。商品本身是输入，视觉要输出消费者关心的四类信息：谁穿、去哪穿、为什么买、穿起来怎样。比如外套要让人看见保暖和版型；T恤要让人理解日常搭配；泳衣要展示结构、覆盖和真实使用。好看只是手段，能讲清购买理由才是目的。",i:"请商家选一个自家商品，试着说出消费者买它的四个理由。",e:"好看不等于爆款；真实、清楚、可理解才是核心。",n:"购买理由相同，但不同市场的视觉表达可以不同。"},
+{p:105,s:2,t:"美区视觉：先清楚，再有场景，强调直接购买理由",tag:"主讲",k:"阳光活力、笑容直接、校园运动感、多元人群、真实但有表现力。",b:["清晰有活力，场景感强","模特状态自然、适龄","安全合规、品质和信息透明"],f:"这页讲方向，不讲绝对规则。美国市场的视觉表达可以更直接，先让消费者看清商品，再用校园、运动、日常等场景说明用途。模特状态可以自然、有活力，适龄、多元；商品信息要清楚，尺码、材质和功能表达要能够兑现。",i:"让商家判断自己的商品适合用校园、户外还是日常场景。",e:"市场方向是参考，不代表所有美国消费者审美完全相同。",n:"欧洲市场更强调真实、克制和质感。"},
+{p:106,s:2,t:"欧洲视觉：真实、克制、有质感，信息必须可兑现",tag:"主讲",k:"自然克制、表情松弛、生活化真实、质感清楚，不夸张不过度滤镜。",b:["真实自然，质感清晰","关注材质、剪裁和细节","尺码、材质和功能信息要可兑现"],f:"欧洲视觉可以更克制，减少夸张滤镜和过度修饰，让面料、剪裁和商品细节清楚呈现。图片表达要与实际商品一致，商品材质、尺码和功能信息必须可兑现。不要把“高级感”误解成堆场景或过度修图。",i:"可以用一件基础款对比：怎样通过自然光和细节体现质感？",e:"避免将区域审美标签绝对化；最终看具体国家、类目和数据。",n:"再看拉美市场，重点转向移动端快速读懂和生活感。"},
+{p:107,s:2,t:"拉美视觉：移动端先读懂，再用温度和生活感增强代入",tag:"主讲",k:"移动端优先、暖调明亮、色彩更大胆、生活场景更贴近。",b:["主体和信息要直接清楚","可用海滩、街头、日常生活场景","不同国家和品类仍需具体判断"],f:"拉美市场这页要讲清楚移动端优先：消费者在手机上快速浏览，主体和信息要直接清楚。视觉可以更温暖、更有活力，适当使用海滩、街头、日常生活等场景，让消费者产生代入感。不同国家和品类仍要具体判断，不能把所有拉美市场简单看成同一种审美。",i:"可问：自己的商品适合用什么当地生活场景表达？",e:"视觉要适配移动端小屏，主体清楚、信息直给。",n:"不同市场之外，更重要的是不同品类也有不同购买理由。"},
+{p:108,s:2,t:"品类底模｜不同品类，要拍不同的购买理由",tag:"主讲",k:"消费者担心什么，就优先展示什么。",b:["棉羽外套：保暖、厚度、不臃肿","抓绒卫衣：柔软、温暖、亲肤","T恤/POLO：好搭、多场景","泳衣：覆盖度、结构、真实使用"],f:"这页是非常实用的品类方法。棉羽外套的顾虑是冬天够不够暖、穿着会不会臃肿，因此要展示厚度、蓬松度和上身比例；抓绒卫衣关注绒感、亲肤和锁温；T恤/POLO关注日常搭配和多场景；泳衣关注覆盖、结构和实际玩水效果。图片要对应消费者的顾虑，不能所有类目都用同一套模板。",i:"请商家选一个自己主营品类，说出消费者最担心的一件事。",e:"图片不是展示越多越好，而是优先证明关键购买理由。",n:"确定展示内容之后，再选视觉形式。"},
+{p:109,s:2,t:"视觉形式2｜主图清楚，附图有氛围",tag:"主讲",k:"商品占比是设计目标参考；道具服务场景，光线体现材质，主次明确。",b:["商品清晰展示","场景营造环境","道具少而精","光线塑造质感"],f:"这页展示场景氛围平铺。先看商品本身是否清楚，再看场景是否提供环境感，道具只需要少量点题，光线帮助呈现材质。课件提到商品占比不低于60%，这是设计目标参考，不是平台强制规则。最终原则是先看清商品，再感受氛围。",i:"让商家观察示例：商品是否突出？道具有没有抢主体？",e:"道具少而精；商品始终是视觉主体。",n:"场景氛围之外，还有一种方式是把搭配关系直接摆出来。"},
+{p:110,s:2,t:"视觉形式3｜场景平铺型：把“买了怎么搭”摆出来",tag:"主讲",k:"商品是主角，道具少而准，光线有方向，搭配关系清楚。",b:["错误示例：道具过多、主体不突出","正确示例：留出空间，突出商品和搭配","让消费者看懂主商品与搭配关系"],f:"场景平铺要回答消费者买回去怎么搭。不要把所有道具都塞进画面，画面元素越多不一定越好。商品要突出，配件和道具只负责说明搭配或使用场景，光线和背景要统一。让消费者一眼看懂主商品是什么、搭配关系是什么。",i:"让商家指出错误图中哪些物品抢走了注意力。",e:"道具服务商品，不能喧宾夺主。",n:"如果需要展示版型和穿着比例，就要考虑人模上身。"},
+{p:111,s:2,t:"视觉形式4｜人模上身型：人模是线上试衣间和比例尺",tag:"主讲",k:"年龄匹配、体态自然、上身完整，长度和松量可判断。",b:["帮助判断衣长、袖长和肩宽","展示宽松度、版型与搭配","适龄自然，避免过度裁切"],f:"人模的价值不是单纯增加人物，而是让消费者看到衣服穿在身上的实际状态。要选择适龄模特，保持自然比例，尽量完整展示商品。消费者可以判断衣长是否合适、袖长到哪里、宽松还是修身，以及搭配效果。不要过度裁切，也不要使用不适龄的姿态。",i:"可以指示图中肩宽、袖长、衣长和松量的位置。",e:"人模要帮助理解商品，不能喧宾夺主或成人化。",n:"泳装是人模展示和细节说明都很重要的品类。"},
+{p:112,s:2,t:"泳装实操｜先让家长放心，再让孩子喜欢",tag:"主讲",k:"正背面、覆盖度、结构、自然动作、年龄匹配。",b:["展示连体、分体及搭配罩衫/防晒服","补充正背面、结构细节和覆盖度","场景可选泳池、沙滩，动作自然"],f:"泳装图片既要照顾家长的购买顾虑，也要体现孩子喜欢的颜色和图案。家长关注覆盖度、肩带、内衬、缝线和穿着稳定性；孩子更关注图案、颜色和活动场景。需要展示正面、背面、结构细节，以及泳池、沙滩等适配场景。模特动作自然，年龄和展示方式适配商品。",i:"可以问：如果只给一张泳装正面图，家长还有哪些问题没被回答？",e:"展示真实结构和适龄效果，避免不当姿势与局部突出。",n:"接下来反过来看，哪些视觉做法会降低商品表现？"},
+{p:113,s:2,t:"爆款视觉不是什么",tag:"主讲",k:"不是乱P换货、不是道具堆满、不是儿童成人化、不是一张图干所有事。",b:["商品改款或失真","道具杂乱，重点不突出","儿童模特动作和表情成人化","一张图承担所有信息，场景和卖点不足"],f:"这页用反面案例建立边界。不能为了画面好看而改变商品颜色、图案和版型；不能让道具盖过商品；儿童模特的姿态和表情要自然适龄；也不能指望一张图承担所有信息。主图负责吸引点击，附图分别展示细节、上身效果、场景和搭配。",i:"让商家快速指出四张错误图分别有什么问题。",e:"真实商品、适龄表达、清楚信息，是视觉底线。",n:"这一部分最后归纳成四个“对”。"},
+{p:114,s:2,t:"爆款视觉是什么｜四个关键要素",tag:"快讲",k:"对的人、清楚的货、对的场景、易懂的信息。",b:["对的人：年龄、气质、审美和动作匹配","清楚的货：版型、图案、材质、套装关系清楚","对的场景：日常、运动、户外或特殊场合","易懂的信息：卖点、件数、搭配一眼能懂"],f:"这一页是视觉方法的总结。不要把爆款视觉理解成一张漂亮图片，而是一整套让消费者快速看懂商品购买理由的图片。让正确的人穿上清楚的商品，进入合适的场景，用消费者容易理解的方式展示。",i:"可以让商家把四个要素记下来。",e:"对的人 + 清楚的货 + 对的场景 + 易懂的信息。",n:"方法明确之后，接下来讲AI如何帮助我们更高效地做出来。"},
+{p:115,s:3,t:"章节封面｜怎么用AI把爆款视觉做出来",tag:"转场",k:"先想清楚，再生成，再质检，再测试。",b:["策略输入","AI生成","质检筛选","测试输出"],f:"这一页是AI模块的开场。告诉商家：AI不是点一下就自动出爆款，前面要有清晰的商品和视觉策略，生成后还要人工质检，最后测试结果。",i:"简短说明AI模块流程。",e:"AI提效，不替代判断。",n:"先明确AI在这条生产线中负责什么、不负责什么。"},
+{p:116,s:3,t:"AI不是替你造货，是帮你低成本把货讲对",tag:"主讲",k:"AI负责提效、换场景、做人模、做版本；人负责选款、审美、保真、合规和数据判断。",b:["AI：换场景、做人模、做多个版本","人工：选款、审美把控、保真合规、判断数据","AI是生产线，不是老板"],f:"这页要把AI定位讲准确。AI能帮助更换场景、生成模特效果、制作不同版本，降低视觉生产成本；但商品选择、市场判断、审美方向、商品真实性和合规仍然要由人负责。不要把AI当成老板，不要让它替商家决定商品是什么、卖给谁。",i:"问：哪些工作可以交给AI，哪些必须由人检查？",e:"AI是生产线，不是老板。",n:"明确分工后，看完整的九步法。"},
+{p:117,s:3,t:"AI爆款视觉九步法",tag:"主讲",k:"选商品、定国家、定人群、找购买理由、选形式、写提示词、生成3–5版、人工质检、A/B测试。",b:["前五步策划：商品、国家、人群、购买理由、形式","后四步生产验证：提示词、多版本、质检、测试","先想清楚，再生成，再验证"],f:"不要拿到商品图就直接对AI说“帮我生成爆款图”。AI不知道商品卖给谁、在哪个国家、消费者为什么买。先完成前五步，把策略想清楚，再让AI生成3到5个不同版本。生成之后人工质检，最后用A/B测试验证。",i:"请商家跟着九个步骤快速读一遍，强调前五步是先想清楚。",e:"先想清楚，再生成；生成之后还要质检和测试。",n:"九步法里，最容易影响生成结果的是提示词是否完整。"},
+{p:118,s:3,t:"提示词清单｜把销售要求填写完整",tag:"主讲",k:"真实商品 + 年龄人群 + 目标市场 + 场景 + 动作 + 光线 + 构图 + 保留细节 + 禁止内容。",b:["商品名称、款式、图案、颜色、材质","年龄和体型；国家地区与审美","使用场景、动作表情、光线色调、构图角度","保留细节；明确禁止改款、成人化和背景杂乱"],f:"提示词不是写作文，而是把销售要求填写完整。先说清楚真实商品，再描述模特年龄、人群和目标市场；接着说明场景、动作、光线和构图；特别强调要保留哪些商品细节，以及哪些内容不能出现。越清楚、越结构化，越容易稳定输出。",i:"逐项指向九个模块，提醒商品信息必须先准确。",e:"保真要求要明确写进去，不能只描述氛围。",n:"如果不知道怎么写，可以先让AI分析参考图，再整理成文字。"},
+{p:119,s:3,t:"如何快速获取AI改造词？先看懂图，再让AI按文字重做",tag:"主讲",k:"先给参考图，再拆解主体、场景、风格、色彩、构图和细节。",b:["上传希望参考的画面","让AI分析主体、场景、风格、色调、构图和细节","结合自己的真实商品重新组织提示词"],f:"这页讲的是获取提示词的一种方法。商家可以先准备一张自己喜欢的参考图，让AI帮忙拆解画面：主体是什么、场景是什么、风格和色调如何、构图角度怎样、有哪些细节。然后再结合自己的商品信息，生成完整改造词。不要直接照搬参考图中的商品或不适合自己的元素。",i:"可以让商家想象：先看懂参考图，再把想要的画面说清楚。",e:"参考图用于理解画面结构，商品本身仍以真实商品为准。",n:"接下来分别看AI能做的几种视觉改造。"},
+{p:120,s:3,t:"人模改造｜匹配对的人，进入对的场景",tag:"主讲",k:"普通商品图 → 人群、穿搭、场景、状态、构图调整 → 本地化人模图。",b:["人群：年龄、种族、地区、气质","穿搭：外搭、配饰、拖鞋、层次","场景：国家、城市、海边、泳池","状态与构图：动作、表情、景别、角度、光线"],f:"人模改造不是简单把衣服放到一个模特身上，而是要匹配对的人、穿搭、场景、状态和构图。原商品图中的泳装图案、版型和颜色必须保持一致。不同市场可以有不同的场景表达，但要避免年龄错误、肢体异常和商品改样。",i:"指出常见失败：年龄不匹配、肢体异常、商品改样。",e:"商品不变，改变展示的人群与场景。",n:"除了人模，也可以把平面商品做成立体陈列。"},
+{p:121,s:3,t:"3D陈列｜让平面商品有空间和层次",tag:"主讲",k:"用空间、自然阴影、完整搭配和细节清晰提升陈列表达。",b:["平面商品作为唯一主体","保留款式、颜色、花型和数量","用前后层次、场景、光线构建立体展示","避免结构失真、增加配件和边缘变形"],f:"3D陈列的目的，是让平面商品有空间感和层次，不是随意增加商品。提示词要明确商品数量和款式不变，搭配物件不新增或不替换，主体位置、前后关系和光线方向要清楚。生成后检查服装结构、边缘、配件和比例有没有异常。",i:"让商家看输入图、提示词和输出图之间的关系。",e:"立体感来自陈列和光影，不是改变商品本身。",n:"还有一种更常见的方式，是把普通平铺图改成有场景氛围的主图。"},
+{p:122,s:3,t:"AI平铺爆改带场景氛围图",tag:"主讲",k:"先把商品、场景、道具和光线拆开，再用完整提示词生成。",b:["输入普通平铺图","描述主体商品、场景氛围、构图与光线","补充风格、画质要求和负面提示","检查道具是否遮挡主体"],f:"这页可以按三栏讲：左边是普通平铺图，中间是完整提示词，右边是场景输出图。提示词要分层写：商品本身是什么、背景场景是什么、道具如何摆、光线如何、画面风格是什么，以及哪些内容不能改变。场景必须服务商品，不能让道具遮挡主体。",i:"提醒商家：先把商品写清楚，再补场景，不要一开始只描述背景。",e:"商品清楚是前提，氛围是加分项。",n:"AI效果好不好，还取决于输入的原始底图。"},
+{p:123,s:3,t:"源图标准｜AI不是从提示词开始，是从一张合格底图开始",tag:"主讲",k:"底图不合格，AI只会把错误放大。",b:["不合格：模糊、裁切、褶皱过多、印花不清、局部遮挡","合格：正背面完整、领口平整、袖口展开、印花清晰、颜色真实","准备清楚的整体图和关键细节图"],f:"这一页要强调源图质量。AI不是万能修复器。如果底图模糊、商品被裁切、印花看不清、袖口被遮挡，AI可能会补错细节。建议准备清晰的正面、背面和局部细节图，保证商品完整、颜色真实、轮廓清楚，再进行AI改造。",i:"让商家对照左右两边，判断自己的底图属于哪一类。",e:"先把源图拍合格，再谈提示词和生成效果。",n:"前面是策略和生成，接下来把整个AI流程闭环起来。"},
+{p:124,s:3,t:"AI爆款视觉闭环｜先想清楚，再生成，再质检，再验证",tag:"主讲",k:"先想清楚 → 再生成 → 再质检 → 再验证 → 再复制。",b:["策划输入：商品、市场、人群、购买理由、视觉形式","AI生成多个版本","人工检查商品一致、人群正确、场景真实和合规","A/B测试点击、加购、转化，只复制有效版本"],f:"这一页是AI生产流程总结。先把商品和目标市场想清楚，再按提示词生成多版；人工检查商品是否一致、人物是否适龄、场景是否真实、内容是否合规；通过数据验证有效版本，最后复制方法。AI提高效率，但方向由人把控，效果由数据判断。",i:"可让商家复述五步闭环。",e:"AI提效，不替代判断；人工守方向，数据决定复制。",n:"进入验证与复制部分，先讲合规底线。"},
+{p:125,s:4,t:"章节封面｜验证与复制",tag:"转场",k:"再测试、看全链路数据，只复制有效版本。",b:["从做出图片转向验证图片是否有效","合规检查、A/B测试、数据判断、复制放大"],f:"这一页是验证与复制章节的封面。提醒商家：图片生成出来只是开始，不是结束。先过合规和质量检查，再做测试，最后根据全链路数据决定是否放大。",i:"快速过页。",e:"不要凭审美直接认定哪张图有效。",n:"先明确儿童视觉的合规红线。"},
+{p:126,s:4,t:"儿童视觉的红线，不是不好看，是不能上线",tag:"主讲",k:"合规是底线：安全、健康、正向的视觉，才能建立家长信任。",b:["不成人化、不裸露、不突出身体敏感部位","不性暗示、不酒精武器暴力","不使用未经授权IP/肖像","不二维码水印、不虚假功能宣传"],f:"童装视觉创意必须守住儿童安全和平台合规要求。图片不能成人化，不能裸露或突出身体敏感部位，不能出现性暗示、暴力等不适宜内容；不能使用未经授权的IP和肖像；不能虚假宣传商品功能，也要避免影响专业度的水印和二维码。具体审核标准以平台当前规则为准。",i:"请商家快速看案例，指出泳衣姿势、T恤IP、虚假功能、二维码水印等风险。",e:"合规不是审美选择，而是上线前提。",n:"合规通过后，如何知道不同图片哪个更有效？"},
+{p:127,s:4,t:"A/B测试一次只改一个变量",tag:"主讲",k:"同一商品、同一价格、同一标题，只换一个视觉变量。",b:["A组只改场景，B组只换模特","尽量保持流量分配和测试周期可比","不要同时更改标题、价格、商品和图片多个因素"],f:"A/B测试的原则是控制变量。比如同一件商品、同一个价格、同一个标题，只让A组改变场景，B组改变模特。一次只改一个视觉变量，才能判断差异可能来自哪里。如果同时改价格、标题、图片和促销，就无法判断究竟哪项带来了变化。",i:"可以问：如果同时换标题、价格和主图，还能判断哪项有效吗？",e:"一次只改变一个变量，其他条件尽量一致。",n:"接着看测试流程和结果，怎么判断哪个版本值得保留？"},
+{p:128,s:4,t:"验证与复制｜看全链路数据，找出有效版本并放大",tag:"主讲",k:"A/B测试 → 看全链路数据 → 找出有效版本 → 复制与放大。",b:["同款多版测试点击和转化","观察曝光、点击、加购、成交","留下表现更好的版本","复用方法并持续放量"],f:"这一页把验证流程做成闭环。第一步做不同视觉版本并测试；第二步不要只看点击，要看曝光、点击、加购和成交；第三步留下真正有效的版本，淘汰无效图；第四步把有效方法复用到相似商品，持续观察数据。复制的是有效方法，不是机械复制一张图到所有商品。",i:"强调：复用方法，不是无脑复制素材。",e:"数据说话，持续验证，逐步放大。",n:"最后看一下可供商家使用的AI工具资源。"},
+{p:129,s:5,t:"AI工具推荐｜高效创作、视觉升级、助力爆款",tag:"快讲",k:"根据实际任务选择工具，组合使用提高创作效率。",b:["图像生成：主题图、详情图","视频生成：短视频、片段","智能编辑：抠图、换背景","AI对话：文案、指令优化"],f:"这一页列出国内外AI工具，目的是让商家知道图像生成、视频生成、智能编辑和AI对话都有相应工具可选。不要逐个工具展开讲功能，工具名单和访问条件可能变化，重点是根据当前任务选择适合的工具，组合使用提升效率。国外工具可能需要特定网络环境，使用时遵守当地法律法规和平台要求。",i:"不逐个软件演示，挑商家最容易上手的一两个方向说明即可。",e:"工具名称会变化，核心是掌握任务拆解和提示词方法。",n:"最后给大家看本次培训配套的视觉优化工具入口。"},
+{p:130,s:5,t:"视觉优化工具入口",tag:"快讲",k:"把今天学到的商品展示方式、场景和提示词，带回去实际做一遍。",b:["打开视觉优化工具","按商品选择展示方式和场景","生成后人工检查商品一致性与合规","先优化一款，再复制到类似商品"],f:"这一页展示视觉优化工具入口。建议商家先选择一款真实商品，准备清晰底图，按商品特点选择展示方式、场景和模特要求，再生成图片。生成后检查颜色、图案、版型、结构和合规性。先把一款商品做完整，再逐步复制到其他商品。",i:"提前测试工具链接；现场网络异常时，可让商家先收藏链接，培训后操作。",e:"先把一款商品做对，再批量复制有效方法。",n:"结束时回到整场主旨：把好货的价值展示出来。",link:"https://bdl.cdnfe.com/upload_bdl/qdtraining/prompt-builder/122d3921-600f-4858-a21f-5dc8506a710c",linkText:"打开视觉优化工具"}
+];
+const sections=[{id:0,name:"标题优化",range:"77–85",time:"约7分钟",desc:"让商品被找到"},{id:1,name:"视觉认知",range:"86–100",time:"约7分钟",desc:"让商品被点开"},{id:2,name:"视觉方法",range:"101–114",time:"约12分钟",desc:"让商品被看懂、被相信"},{id:3,name:"AI视觉实操",range:"115–124",time:"约10分钟",desc:"提高视觉生产效率"},{id:4,name:"验证与复制",range:"125–128",time:"约7分钟",desc:"用数据判断效果"},{id:5,name:"工具资源",range:"129–130",time:"约2分钟",desc:"把方法带回去执行"}];
+let idx=0, fontSize=18, mode="hybrid", isLight=false, expanded=false, focus=false, elapsed=0, running=false, timerId=null, touchX=0, touchY=0;
+const $=id=>document.getElementById(id);
+function toast(msg){const el=$("toast");el.textContent=msg;el.classList.add("show");clearTimeout(toast._t);toast._t=setTimeout(()=>el.classList.remove("show"),1700)}
+function save(){try{localStorage.setItem("pb-speaker-v1",JSON.stringify({idx,fontSize,mode,isLight,elapsed}))}catch(e){}}
+function load(){try{const v=JSON.parse(localStorage.getItem("pb-speaker-v1")||"null");if(v){idx=Math.max(0,Math.min(slides.length-1,v.idx||0));fontSize=v.fontSize||18;mode=v.mode||"hybrid";isLight=!!v.isLight;elapsed=v.elapsed||0}}catch(e){}}
+function buildSidebar(target){target.innerHTML='<div class="side-heading"><span>培训章节导航</span><span>54页</span></div>'+sections.map(s=>`<div class="chapter"><button class="chapter-btn" data-section="${s.id}"><span class="chapter-info"><span class="chapter-no">0${s.id+1}</span><span>${s.name}</span></span><span class="chapter-pages">${s.range}</span></button></div>`).join('')+'<div class="side-tip">建议讲解主线<br><b style="color:#eab568">找得到 → 点得进 → 看得懂 → 信得过 → 测得准</b><br><br>支持滑动、键盘、页码跳转。进度和字号会在本机浏览器自动保存。</div>';
+ target.querySelectorAll('[data-section]').forEach(btn=>btn.addEventListener('click',()=>{const s=Number(btn.dataset.section);const first=slides.findIndex(x=>x.s===s);go(first);closeDrawer()}));}
+function render(){const d=slides[idx], sec=sections[d.s], pageNo=idx+1;document.documentElement.style.setProperty('--font',fontSize+'px');document.body.classList.toggle('light',isLight);document.body.classList.toggle('focus-mode',focus);$('progressSection').textContent=sec.name;$('progressText').textContent=`${pageNo} / ${slides.length} · PPT ${d.p}`;$('progressFill').style.width=(pageNo/slides.length*100)+'%';$('crumbSection').textContent=sec.name;$('crumbPage').textContent='PPT 第'+d.p+'页';$('bottomCounter').textContent=`${pageNo} / ${slides.length}`;$('bottomHint').textContent=sec.desc+' · 左右滑动翻页';$('prevBtn').disabled=idx===0;$('nextBtn').disabled=idx===slides.length-1;$('modeSelect').value=mode;$('expandAllBtn').textContent=(mode==='full'||expanded)?'收起全文':'展开全文';
+ document.querySelectorAll('.chapter-btn').forEach(b=>b.classList.toggle('active',Number(b.dataset.section)===d.s));
+ const bullets=d.b.map(x=>`<li>${x}</li>`).join('');const mobileOneScreen=window.matchMedia('(max-width: 900px)').matches;const fullOpen=mobileOneScreen||mode==='full'||expanded;const full=d.f.replace(/\n/g,'<br>');
+ $('slideCard').innerHTML=`<div class="slide-top"><div class="slide-meta"><span class="page-pill">PPT ${d.p}</span><span class="type-pill">${d.tag}</span><span class="section-pill">${sec.name} · ${sec.time}</span></div><h1 class="slide-title">${d.t}</h1><p class="slide-sub">${sec.desc}｜第 ${pageNo} / ${slides.length} 张提词卡</p><div class="keyline">${d.k}</div></div><div class="slide-body"><section class="block"><div class="block-head"><span class="dot"></span>快速提词 · 先看这几条</div><ul class="bullet-list">${bullets}</ul><div class="script-actions"><button class="small-btn" id="toggleFull">${fullOpen?'收起完整口条':'展开完整口条'}</button>${d.link?`<a class="small-btn" href="${d.link}" target="_blank" rel="noopener">${d.linkText||'打开工具'} ↗</a>`:''}</div></section><section class="full-script ${fullOpen?'open':''}" id="fullScript"><div class="block-head"><span class="dot"></span>完整讲稿 · 可直接参考表达</div><div class="talk">${full}</div><div class="script-actions"><button class="small-btn" id="copyFull">复制完整口条</button></div></section><div class="hint interact"><span class="hint-label">互动 / 操作</span><span>${d.i}</span></div><div class="hint focus"><span class="hint-label">必须强调</span><span>${d.e}</span></div><div class="hint next"><span class="hint-label">下一页转场</span><span>${d.n}</span></div></div>`;
+ $('toggleFull').addEventListener('click',()=>{if(mode==='full'){mode='hybrid';expanded=false}else{expanded=!expanded}render();if(expanded&&!window.matchMedia('(max-width: 900px)').matches)setTimeout(()=>$('fullScript').scrollIntoView({behavior:'smooth',block:'nearest'}),30)});
+ const cp=$('copyFull');if(cp)cp.addEventListener('click',()=>copyText(d.f));$('timerValue').textContent=formatTime(elapsed);$('timerToggle').textContent=running?'暂停':'开始';$('themeToggle').textContent=isLight?'☾':'◐';$('focusToggle').textContent=focus?'退出专注':'专注';save();requestAnimationFrame(fitMobileCard);}
+function go(n){if(n<0||n>=slides.length)return;idx=n;expanded=false;render();if(!window.matchMedia('(max-width: 900px)').matches)window.scrollTo({top:0,behavior:'smooth'});}
+function next(){go(idx+1)}function prev(){go(idx-1)}
+function formatTime(s){const h=Math.floor(s/3600),m=Math.floor((s%3600)/60),sec=s%60;return h?`${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`:`${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`}
+function timerStart(){if(running){clearInterval(timerId);running=false}else{running=true;timerId=setInterval(()=>{elapsed++;$('timerValue').textContent=formatTime(elapsed);if(elapsed%5===0)save()},1000)}$('timerToggle').textContent=running?'暂停':'开始';save()}
+function timerReset(){clearInterval(timerId);running=false;elapsed=0;$('timerValue').textContent='00:00';$('timerToggle').textContent='开始';save();toast('计时已重置')}
+async function copyText(txt){try{await navigator.clipboard.writeText(txt);toast('已复制本页口条')}catch(e){const ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();toast('已复制本页口条')}}
+function openDrawer(){$('drawerBackdrop').classList.add('show')}function closeDrawer(){$('drawerBackdrop').classList.remove('show')}
+function jump(){const v=prompt('输入PPT页码（77–130）');if(v===null)return;const p=Number(v);if(!Number.isInteger(p)||p<77||p>130){toast('请输入77–130之间的页码');return}go(slides.findIndex(x=>x.p===p))}
+function fitMobileCard(){
+  if(!window.matchMedia('(max-width: 900px)').matches)return;
+  const card=$('slideCard'), body=card?.querySelector('.slide-body'), full=$('fullScript');
+  if(!card||!body)return;
+  let fit=1;
+  const overflow=()=>{
+    const top=card.querySelector('.slide-top');
+    return card.scrollHeight>card.clientHeight+1 || body.scrollHeight>body.clientHeight+1 || (top&&top.scrollHeight>top.clientHeight+1) || (full&&full.scrollHeight>full.clientHeight+1);
+  };
+  document.documentElement.style.setProperty('--fit',fit);
+  for(let i=0;i<24;i++){
+    void card.offsetHeight;
+    if(!overflow())break;
+    fit=Math.max(.58,fit-.025);
+    document.documentElement.style.setProperty('--fit',fit);
+  }
+  card.dataset.fit=(fit*100).toFixed(0);
+}
+function syncMobileViewport(){
+  if(window.matchMedia('(max-width: 900px)').matches){
+    const h=window.visualViewport?.height||window.innerHeight;
+    document.documentElement.style.setProperty('--app-height',h+'px');
+    requestAnimationFrame(fitMobileCard);
+  }else{
+    document.documentElement.style.removeProperty('--app-height');
+    document.documentElement.style.setProperty('--fit',1);
+  }
+}
+$('prevBtn').addEventListener('click',prev);$('nextBtn').addEventListener('click',next);$('jumpBtn').addEventListener('click',jump);$('copyBtn').addEventListener('click',()=>copyText(slides[idx].f));$('copyMobile').addEventListener('click',()=>copyText(slides[idx].f));$('jumpMobile').addEventListener('click',jump);$('bottomCounter').addEventListener('click',jump);$('expandAllBtn').addEventListener('click',()=>{if(mode==='full'){mode='hybrid';expanded=false}else{expanded=!expanded}render();toast(expanded?'已展开完整口条':'已收起完整口条')});$('modeSelect').addEventListener('change',e=>{mode=e.target.value;expanded=mode==='full';render();toast('提词模式已切换')});$('fontDown').addEventListener('click',()=>{fontSize=Math.max(15,fontSize-1);render()});$('fontUp').addEventListener('click',()=>{fontSize=Math.min(26,fontSize+1);render()});$('fontDownAlt').addEventListener('click',()=>{fontSize=Math.max(15,fontSize-1);render()});$('fontUpAlt').addEventListener('click',()=>{fontSize=Math.min(26,fontSize+1);render()});$('themeToggle').addEventListener('click',()=>{isLight=!isLight;render()});$('focusToggle').addEventListener('click',()=>{focus=!focus;render()});$('timerToggle').addEventListener('click',timerStart);$('timerReset').addEventListener('click',timerReset);$('openMenu').addEventListener('click',openDrawer);$('closeMenu').addEventListener('click',closeDrawer);$('drawerBackdrop').addEventListener('click',e=>{if(e.target===$('drawerBackdrop'))closeDrawer()});
+document.addEventListener('keydown',e=>{if(['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName))return;if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();next()}else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();prev()}else if(e.key==='Home'){go(0)}else if(e.key==='End'){go(slides.length-1)}else if(e.key.toLowerCase()==='f'){focus=!focus;render()} });
+const card=$('slideCard');card.addEventListener('touchstart',e=>{if(e.touches.length!==1)return;touchX=e.touches[0].clientX;touchY=e.touches[0].clientY},{passive:true});card.addEventListener('touchend',e=>{if(!touchX&&!touchY)return;const dx=e.changedTouches[0].clientX-touchX,dy=e.changedTouches[0].clientY-touchY;if(Math.abs(dx)>65&&Math.abs(dx)>Math.abs(dy)*1.25){if(dx<0)next();else prev()}touchX=0;touchY=0},{passive:true});
+load();buildSidebar($('desktopSidebar'));buildSidebar($('mobileSidebar'));syncMobileViewport();window.addEventListener('resize',syncMobileViewport,{passive:true});window.addEventListener('orientationchange',()=>setTimeout(syncMobileViewport,180),{passive:true});if(window.visualViewport)window.visualViewport.addEventListener('resize',syncMobileViewport,{passive:true});render();
+</script>
+</body>
+</html>
